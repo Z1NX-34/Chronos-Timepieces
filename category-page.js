@@ -1,10 +1,8 @@
-import { supabaseReady } from './supabase-config.js';
-
 // Category Page JavaScript
 // Handles filtering, sorting, and product display
 
-// Global supabase reference
-let supabase = null;
+// Use global supabase client
+const supabase = window.supabaseClient;
 
 // Get category from page
 const pageTitle = document.querySelector('.category-title')?.textContent.trim();
@@ -23,38 +21,31 @@ let activeFilters = {
 let currentSort = 'recommended';
 
 // Initialize
-document.addEventListener('DOMContentLoaded', async () => {
-    // Wait for Supabase to be ready
-    try {
-        supabase = await supabaseReady;
+document.addEventListener('DOMContentLoaded', () => {
+    if (supabase) {
+        loadProducts();
+        initializeFilters();
+        initializeSorting();
         
-        if (supabase) {
-            loadProducts();
-            initializeFilters();
-            initializeSorting();
+        // Account Button Handler
+        const accountBtn = document.getElementById('accountBtn');
+        if (accountBtn) {
+            accountBtn.addEventListener('click', async () => {
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) {
+                    window.location.href = 'admin.html';
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
             
-            // Account Button Handler
-            const accountBtn = document.getElementById('accountBtn');
-            if (accountBtn) {
-                accountBtn.addEventListener('click', async () => {
-                    const { data: { session } } = await supabase.auth.getSession();
-                    if (session) {
-                        window.location.href = 'admin.html';
-                    } else {
-                        window.location.href = 'login.html';
-                    }
-                });
-                
-                // Update label if logged in
-                checkLoginStatus();
-            }
-        } else {
-            console.warn('Supabase not available');
-            const grid = document.getElementById('productsGrid');
-            if (grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Unable to load products. Please try refreshing.</div>';
+            // Update label if logged in
+            checkLoginStatus();
         }
-    } catch (err) {
-        console.error('Error initializing:', err);
+    } else {
+        console.warn('Supabase not available');
+        const grid = document.getElementById('productsGrid');
+        if (grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Unable to load products. Please try refreshing.</div>';
     }
 });
 

@@ -14,6 +14,13 @@
     
     <!-- Styles -->
     <link rel="stylesheet" href="styles.css">
+    <!-- Supabase -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script>
+      window.SUPABASE_URL = 'https://mtndlylequqvhamciuus.supabase.co';
+      window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10bmRseWxlcXVxdmhhbWNpdXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NTU4NzcsImV4cCI6MjA3OTUzMTg3N30.x2PTamA4Omsfhb8idODiosg9vI-jdT0N_vW2kQAmcIo';
+      window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    </script>
 </head>
 <body>
     <!-- NAVIGATION -->
@@ -243,7 +250,7 @@
     </footer>
 
     <!-- JavaScript -->
-    <script type="module" src="script.js"></script>
+    <script src="script.js"></script>
 
 <!-- Mobile Bottom Navigation -->
     <nav class="mobile-bottom-nav">
