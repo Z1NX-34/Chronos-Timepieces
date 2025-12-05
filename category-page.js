@@ -1,8 +1,19 @@
 // Category Page JavaScript
 // Handles filtering, sorting, and product display
 
-// Use global supabase client
-const supabase = window.supabaseClient;
+// Get the global supabase client - with fallback
+function getSupabaseClient() {
+  if (window.supabaseClient) {
+    return window.supabaseClient;
+  }
+  if (window.supabase && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+    window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    return window.supabaseClient;
+  }
+  return null;
+}
+
+const supabase = getSupabaseClient();
 
 // Get category from page
 const pageTitle = document.querySelector('.category-title')?.textContent.trim();

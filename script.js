@@ -2,8 +2,20 @@
 // CHRONOS TIMEPIECES - SUPABASE VERSION
 // ========================================
 
-// Use the global supabase client initialized in HTML
-const supabase = window.supabaseClient;
+// Get the global supabase client - with fallback
+function getSupabaseClient() {
+  if (window.supabaseClient) {
+    return window.supabaseClient;
+  }
+  // Fallback: try to create it if supabase library is available
+  if (window.supabase && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+    window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
+    return window.supabaseClient;
+  }
+  return null;
+}
+
+const supabase = getSupabaseClient();
 
 document.addEventListener("DOMContentLoaded", () => {
   // Initialize all features
@@ -20,9 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCart();
   initSearchBar();
   
+  // Get supabase again in case it wasn't ready earlier
+  const sb = getSupabaseClient();
+  
   // Supabase features
-  if (supabase) {
-    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
+  if (sb) {
+    console.log('Supabase initialized successfully');
+    if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' || window.location.pathname.endsWith('/')) {
       fetchProducts();
     }
     checkAuthState();
@@ -37,14 +53,22 @@ let allProducts = [];
 
 // === FETCH PRODUCTS FROM SUPABASE ===
 async function fetchProducts() {
+  const sb = getSupabaseClient();
+  if (!sb) {
+    console.error('Supabase client not available');
+    return;
+  }
+  
   try {
-    const { data: products, error } = await supabase
+    console.log('Fetching products from Supabase...');
+    const { data: products, error } = await sb
       .from('products')
       .select('*')
       .order('created_at', { ascending: false })
     
     if (error) throw error
     
+    console.log('Products loaded:', products?.length || 0);
     allProducts = products || []
     
     const grid = document.getElementById('productsGrid');
@@ -110,7 +134,9 @@ function renderProducts(products, container) {
 
 // === SUPABASE AUTHENTICATION ===
 async function checkAuthState() {
-  const { data: { session } } = await supabase.auth.getSession()
+  const sb = getSupabaseClient();
+  if (!sb) return;
+  const { data: { session } } = await sb.auth.getSession()
   updateNavbar(session)
 }
 
@@ -151,7 +177,7 @@ function updateNavbar(session) {
 
 // === SOCIAL LOGIN ===
 async function socialLogin(provider) {
-  const { data, error } = await supabase.auth.signInWithOAuth({
+  const { data, error } = await getSupabaseClient().auth.signInWithOAuth({
     provider: provider,
     options: {
       redirectTo: window.location.origin + '/index.html'
@@ -165,7 +191,7 @@ async function socialLogin(provider) {
 
 // === EMAIL/PASSWORD AUTH ===
 async function loginWithEmail(email, password) {
-  const { data, error } = await supabase.auth.signInWithPassword({
+  const { data, error } = await getSupabaseClient().auth.signInWithPassword({
     email: email,
     password: password
   })
@@ -186,7 +212,7 @@ async function loginWithEmail(email, password) {
 }
 
 async function registerWithEmail(email, password) {
-  const { data, error } = await supabase.auth.signUp({
+  const { data, error } = await getSupabaseClient().auth.signUp({
     email: email,
     password: password
   })
@@ -201,7 +227,7 @@ async function registerWithEmail(email, password) {
 }
 
 async function logout() {
-  const { error } = await supabase.auth.signOut()
+  const { error } = await getSupabaseClient().auth.signOut()
   if (error) {
     showToast('Logout failed', 'error')
   } else {
@@ -381,7 +407,7 @@ function removeFromCart(id) {
 
 // === CHECKOUT & ORDERS ===
 async function placeOrder() {
-  const { data: { session } } = await supabase.auth.getSession()
+  const { data: { session } } = await getSupabaseClient().auth.getSession()
   
   if (!session) {
     showToast('Please login to place an order', 'error');
@@ -820,7 +846,7 @@ function initRippleEffect() {
 // === WISHLIST FUNCTIONALITY ===
 window.toggleWishlist = async function(productId, btnElement) {
   console.log('toggleWishlist called', productId, btnElement);
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await getSupabaseClient().auth.getSession();
   if (!session) {
     showToast('Please login to use wishlist', 'info');
     return;
@@ -864,7 +890,7 @@ window.toggleWishlist = async function(productId, btnElement) {
 }
 
 async function checkWishlistStatus() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await getSupabaseClient().auth.getSession();
   if (!session) return;
 
   try {
@@ -976,7 +1002,7 @@ window.closeCategoriesModal = function() {
 
 // Update mobile account button based on auth state
 async function updateMobileNav() {
-  const { data: { session } } = await supabase.auth.getSession();
+  const { data: { session } } = await getSupabaseClient().auth.getSession();
   const mobileAccountBtn = document.getElementById('mobileAccountBtn');
   
   if (mobileAccountBtn && session?.user) {
