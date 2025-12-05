@@ -1,8 +1,8 @@
 # Dependencies
 node_modules/
 
-# Supabase credentials (NEVER commit this!)
-supabase-config.js
+# Supabase config (anon key is safe for client-side)
+# supabase-config.js
 
 # Environment files
 .env
