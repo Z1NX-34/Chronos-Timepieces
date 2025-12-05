@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Search Results - Chronos Timepieces">
+    <link rel="icon" href="assets/logo/favicon.jpg" type="image/jpeg">
+    <title>Search Results - Chronos Timepieces</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="category-page.css">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <!-- Top Layer: Logo, Search, Actions -->
+        <div class="nav-top">
+            <div class="container">
+                <a href="index.html" class="logo-container">
+                    <img src="assets/logo/chronos-logo.jpg" alt="Chronos Icon" class="logo-icon">
+                    <div class="logo-text">
+                        <div class="logo-brand">Chronos Timepieces</div>
+                        <div class="logo-tagline">Where Time Meets Elegance</div>
+                    </div>
+                </a>
+
+                <div class="nav-right-section">
+                    <div class="search-bar-modern">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search timepieces...">
+                        <button class="search-btn-modern">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="nav-actions">
+                        <button class="nav-icon-btn" id="accountBtn" aria-label="Account">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span class="nav-icon-label">Login</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="wishlistNavBtn" aria-label="Wishlist" onclick="window.location.href='wishlist.html'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="nav-icon-label">Wishlist</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="cartNavBtn" aria-label="Cart" onclick="window.location.href='cart.html'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <span class="nav-icon-label">Cart</span>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </button>
+                    </div>
+
+                    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Layer: Navigation Links -->
+        <div class="nav-bottom" id="navBottom">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="everyday-elegance.html">Everyday Elegance</a></li>
+                    <li><a href="elite-luxury.html">Elite Luxury</a></li>
+                    <li><a href="exclusive-collections.html">Exclusive Collections</a></li>
+                    <li><a href="premium-accessories.html">Premium Accessories</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-container">
+        <div class="container">
+            <nav class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span class="separator">/</span>
+                <span class="current">Search Results</span>
+            </nav>
+        </div>
+    </div>
+
+    <!-- PAGE HEADER -->
+    <section class="category-header">
+        <div class="container">
+            <h1 class="category-title shimmer-text">SEARCH RESULTS</h1>
+            <div class="title-underline"></div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="category-main">
+        <div class="container">
+            <div class="category-layout">
+                <!-- SIDEBAR FILTERS -->
+                <div class="filters-overlay" onclick="toggleFilters()"></div>
+                <aside class="filters-sidebar">
+                    <div class="filters-header">
+                        <button class="filter-close-btn" onclick="toggleFilters()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="4" y1="21" x2="4" y2="14"></line>
+                            <line x1="4" y1="10" x2="4" y2="3"></line>
+                            <line x1="12" y1="21" x2="12" y2="12"></line>
+                            <line x1="12" y1="8" x2="12" y2="3"></line>
+                            <line x1="20" y1="21" x2="20" y2="16"></line>
+                            <line x1="20" y1="12" x2="20" y2="3"></line>
+                            <line x1="1" y1="14" x2="7" y2="14"></line>
+                            <line x1="9" y1="8" x2="15" y2="8"></line>
+                            <line x1="17" y1="16" x2="23" y2="16"></line>
+                        </svg>
+                        <h3>FILTERS</h3>
+                    </div>
+
+                    <!-- Ribbons Filter -->
+                    <div class="filter-group">
+                        <button class="filter-group-header" data-filter="ribbons">
+                            <span>RIBBONS</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="filter-group-content" id="ribbons-filter">
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Best Seller" data-filter-type="ribbon">
+                                <span class="checkmark"></span>
+                                <span class="label-text">Best Seller</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="New Arrival" data-filter-type="ribbon">
+                                <span class="checkmark"></span>
+                                <span class="label-text">New Arrival</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Premium" data-filter-type="ribbon">
+                                <span class="checkmark"></span>
+                                <span class="label-text">Premium</span>
+                            </label>
+                            <label class="filter-checkbox">
+                                <input type="checkbox" value="Exclusive" data-filter-type="ribbon">
+                                <span class="checkmark"></span>
+                                <span class="label-text">Exclusive</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Price Filter -->
+                    <div class="filter-group">
+                        <button class="filter-group-header" data-filter="price">
+                            <span>PRICE</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="filter-group-content" id="price-filter">
+                            <div class="price-range-inputs">
+                                <input type="number" id="minPrice" placeholder="৳0" min="0">
+                                <span>-</span>
+                                <input type="number" id="maxPrice" placeholder="৳50000" min="0">
+                            </div>
+                            <button class="apply-price-btn" id="applyPriceFilter">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Brands Filter -->
+                    <div class="filter-group">
+                        <button class="filter-group-header" data-filter="brands">
+                            <span>BRANDS</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <polyline points="6 9 12 15 18 9"></polyline>
+                            </svg>
+                        </button>
+                        <div class="filter-group-content" id="brands-filter">
+                            <!-- Brands will be populated dynamically -->
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- PRODUCTS GRID -->
+                <div class="products-section">
+                    <!-- Sort Bar -->
+                    <div class="sort-bar">
+                        <div class="results-count">
+                        <button class="mobile-filter-btn" onclick="toggleFilters()">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="4" y1="21" x2="4" y2="14"></line>
+                                <line x1="4" y1="10" x2="4" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12" y2="3"></line>
+                                <line x1="20" y1="21" x2="20" y2="16"></line>
+                                <line x1="20" y1="12" x2="20" y2="3"></line>
+                                <line x1="1" y1="14" x2="7" y2="14"></line>
+                                <line x1="9" y1="8" x2="15" y2="8"></line>
+                                <line x1="17" y1="16" x2="23" y2="16"></line>
+                            </svg>
+                            Filters
+                        </button>
+                            <span id="resultsCount">Loading...</span>
+                        </div>
+                        <div class="sort-dropdown">
+                            <label for="sortSelect">SORT BY</label>
+                            <select id="sortSelect" class="sort-select">
+                                <option value="recommended">Recommended</option>
+                                <option value="price-low">Price, low to high</option>
+                                <option value="price-high">Price, high to low</option>
+                                <option value="newest">Newest First</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here dynamically -->
+                    </div>
+
+                    <!-- No Results Message -->
+                    <div class="no-results" id="noResults" style="display: none;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                        <h3>No products found</h3>
+                        <p>Try adjusting your filters or search criteria</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Chronos</h3>
+                    <p>Curating the finest timepieces for discerning collectors since 2024.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="about.html#warranty">Warranty</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html#shipping">Shipping Info</a></li>
+                        <li><a href="about.html#returns">Returns</a></li>
+                        <li><a href="about.html#faq">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <p>Email: info@chronostimepieces.com</p>
+                    <p>Phone: +880 1234-567890</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Chronos Timepieces. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script type="module" src="script.js"></script>
+    <script type="module" src="category-page.js"></script>
+
+<!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-nav-items">
+        <a href="index.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item" onclick="event.preventDefault(); openCategoriesModal();">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Categories</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="mobile-nav-badge cart-count">0</span>
+        </a>
+        <a href="login.html" class="mobile-nav-item" id="mobileAccountBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Account</span>
+        </a>
+      </div>
+    </nav>
+
+        <!-- Categories Modal (Mobile) -->
+    <div class="categories-modal" id="categoriesModal">
+      <div class="modal-overlay" onclick="closeCategoriesModal()"></div>
+      <div class="modal-content-categories">
+        <div class="modal-header">
+          <h3>Categories</h3>
+          <button class="modal-close-btn" onclick="closeCategoriesModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="categories-grid-modal">
+          <!-- Everyday Elegance -->
+          <a href="everyday-elegance.html" class="category-card-modal">
+            <img src="assets/images/everyday-elegance.jpg" alt="Everyday Elegance" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Everyday<br>Elegance</h4>
+            </div>
+          </a>
+          
+          <!-- Elite Luxury -->
+          <a href="elite-luxury.html" class="category-card-modal">
+            <img src="assets/images/elite-luxury.png" alt="Elite Luxury" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Elite<br>Luxury</h4>
+            </div>
+          </a>
+          
+          <!-- Exclusive Collections -->
+          <a href="exclusive-collections.html" class="category-card-modal">
+            <img src="assets/images/exclusive-collections.png" alt="Exclusive Collections" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Exclusive<br>Collections</h4>
+            </div>
+          </a>
+          
+          <!-- Premium Accessories -->
+          <a href="premium-accessories.html" class="category-card-modal">
+            <div class="category-bg-modal accessories-bg">
+              <div class="icon-pattern"></div>
+            </div>
+            <div class="category-content-modal dark-text">
+              <h4>Premium<br>Accessories</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/8801604098325" class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
+      <div class="floating-whatsapp-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,4.29C13.158,4.29,4.32,13.135,4.315,23.986c-0.001,3.612,0.972,6.996,2.643,9.902L4.156,43.844l10.19-2.67c2.81,1.55,5.99,2.373,9.244,2.373c10.856,0,19.694-8.845,19.699-19.696C43.301,13.298,34.87,4.29,24.014,4.29L24.014,4.29z" />
+          <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.163-4.627c-8.707,0-15.794,7.087-15.798,15.796c-0.001,2.785,0.727,5.503,2.111,7.901l-2.243,8.192l8.379-2.197c2.316,1.264,4.925,1.93,7.548,1.931h0.003c8.705,0,15.792-7.087,15.797-15.796C39.812,19.821,38.157,15.814,35.176,12.832z" />
+          <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731+0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="floating-whatsapp-text">
+        <span class="floating-whatsapp-label">Chat with us</span>
+        <span class="floating-whatsapp-number">+880 1604-098325</span>
+      </div>
+    </a>
+
+</body>
+</html>

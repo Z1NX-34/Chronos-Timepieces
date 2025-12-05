@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Chronos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0A1B2A;
+            --secondary: #1a2b3c;
+            --accent: #D4AF37;
+            --text-light: #f4f4f4;
+            --text-muted: #8898aa;
+            --danger: #f5365c;
+            --success: #2dce89;
+            --warning: #fb6340;
+            --info: #11cdef;
+            --border: rgba(255,255,255,0.1);
+            --card-bg: #112233;
+            --sidebar-width: 260px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        
+        body { background-color: #05111a; color: var(--text-light); display: flex; min-height: 100vh; overflow-x: hidden; }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--primary);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 100;
+            transition: left 0.3s ease;
+        }
+
+        .brand {
+            padding: 2rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-links { list-style: none; padding: 1rem 0; flex: 1; }
+        .nav-item { margin-bottom: 0.5rem; }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--accent);
+            border-left-color: var(--accent);
+        }
+
+        .nav-link svg { margin-right: 1rem; width: 20px; height: 20px; }
+
+        .user-profile {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .avatar {
+            width: 40px; height: 40px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary); font-weight: bold;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            padding: 2rem;
+            width: calc(100% - var(--sidebar-width));
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .search-bar {
+            background: var(--secondary);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            width: 300px;
+            color: white;
+            outline: none;
+        }
+
+        /* Cards */
+        .dashboard-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+        .card-title { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; }
+        .card-icon { 
+            width: 40px; height: 40px; 
+            border-radius: 10px; 
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+        }
+        .icon-blue { background: rgba(17, 205, 239, 0.1); color: var(--info); }
+        .icon-red { background: rgba(245, 54, 92, 0.1); color: var(--danger); }
+        .icon-green { background: rgba(45, 206, 137, 0.1); color: var(--success); }
+        .icon-orange { background: rgba(251, 99, 64, 0.1); color: var(--warning); }
+
+        .card-value { font-size: 1.8rem; font-weight: 700; color: var(--text-light); }
+        .card-stat { font-size: 0.85rem; margin-top: 0.5rem; }
+        .text-success { color: var(--success); }
+        .text-danger { color: var(--danger); }
+
+        /* Tables */
+        .table-container {
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--primary);
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        .btn-primary:hover { background: #bfa030; transform: translateY(-2px); }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text-light);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); }
+
+        table { width: 100%; border-collapse: collapse; }
+        th { text-align: left; padding: 1rem; color: var(--text-muted); font-weight: 500; border-bottom: 1px solid var(--border); }
+        td { padding: 1rem; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        
+        .status-badge {
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .status-pending { background: rgba(251, 99, 64, 0.1); color: var(--warning); }
+        .status-completed { background: rgba(45, 206, 137, 0.1); color: var(--success); }
+
+        .action-btn {
+            background: none; border: none; cursor: pointer; color: var(--text-muted); transition: 0.2s;
+            margin-right: 0.5rem; font-size: 1.2rem;
+        }
+        .action-btn:hover { color: var(--text-light); transform: scale(1.2); }
+
+        /* Views */
+        .view-section { display: none; }
+        .view-section.active { display: block; }
+
+        /* Modal */
+        .modal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); z-index: 1000;
+            align-items: center; justify-content: center;
+            backdrop-filter: blur(4px);
+        }
+        .modal-content {
+            background: var(--secondary);
+            padding: 2rem;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border: 1px solid var(--border);
+        }
+        
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; color: var(--text-muted); font-size: 0.9rem; }
+        .form-control {
+            width: 100%; padding: 0.8rem;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: white;
+            outline: none;
+        }
+        .form-control:focus { border-color: var(--accent); }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1001;
+            background: var(--accent);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        .mobile-menu-toggle svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--primary);
+            stroke-width: 2.5;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .sidebar {
+                left: -280px;
+                width: 280px;
+                box-shadow: 4px 0 20px rgba(0,0,0,0.5);
+            }
+
+            .sidebar.active {
+                left: 0;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+                padding-top: 80px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .search-bar {
+                width: 100%;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 1rem;
+                padding-top: 80px;
+            }
+
+            .card {
+                padding: 1.25rem;
+            }
+
+            .card-value {
+                font-size: 1.5rem;
+            }
+
+            .dashboard-cards {
+                grid-template-columns: 1fr;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 0.75rem 0.5rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 1rem;
+            }
+
+            .btn-primary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+        @keyframes slideOut { from { transform: translateX(0); opacity: 1; } to { transform: translateX(100%); opacity: 0; } }
+    </style>
+</head>
+<body>
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobileToggle">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a href="index.html" class="brand" style="text-decoration: none; display: block;">Chronos</a>
+        <ul class="nav-links">
+            <li class="nav-item">
+                <a class="nav-link active" data-view="dashboard">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-view="products">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    <span>Products</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-view="orders">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                    <span>Orders</span>
+                </a>
+            </li>
+        </ul>
+        <div class="user-profile">
+            <div class="avatar">A</div>
+            <span style="flex: 1;">Admin User</span>
+            <button id="logoutBtn" style="background: none; border: none; color: var(--danger); cursor: pointer;">
+                <svg style="width: 20px;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header -->
+        <header class="header">
+            <h2 id="pageTitle">Dashboard Overview</h2>
+            <input type="text" class="search-bar" id="searchBar" placeholder="Search products...">
+        </header>
+
+        <!-- DASHBOARD VIEW -->
+        <section id="dashboard-view" class="view-section active">
+            <div class="dashboard-cards">
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Revenue</div>
+                            <div class="card-value" id="totalRevenue">৳0</div>
+                        </div>
+                        <div class="card-icon icon-green">৳</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Total Orders</div>
+                            <div class="card-value" id="totalOrders">0</div>
+                        </div>
+                        <div class="card-icon icon-blue">📦</div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Products</div>
+                            <div class="card-value" id="totalProducts">0</div>
+                        </div>
+                        <div class="card-icon icon-orange">⌚</div>
+                    </div>
+                    <div class="card-stat">In Stock</div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <div>
+                            <div class="card-title">Avg. Order</div>
+                            <div class="card-value" id="avgOrder">৳0</div>
+                        </div>
+                        <div class="card-icon icon-red">📊</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <div class="section-header">
+                    <h3>Recent Orders</h3>
+                    <button class="btn-primary" data-view-btn="orders">View All</button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentOrdersTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PRODUCTS VIEW -->
+        <section id="products-view" class="view-section">
+            <div class="table-container">
+                <div class="section-header">
+                    <h3>Product Inventory</h3>
+                    <button class="btn-primary" id="addProductBtn">
+                        <span>+</span> Add Product
+                    </button>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Category</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ORDERS VIEW -->
+        <section id="orders-view" class="view-section">
+            <div class="table-container">
+                <div class="section-header">
+                    <h3>All Orders</h3>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Items</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allOrdersTable">
+                        <!-- Populated by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <!-- ADD PRODUCT MODAL -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="section-header">
+                <h3>Add New Product</h3>
+                <button id="closeAddModal" style="background:none;border:none;color:white;cursor:pointer;font-size:1.5rem;">&times;</button>
+            </div>
+            <form id="addProductForm">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" name="name" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (৳)</label>
+                    <input type="number" name="price" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>SKU (Stock Keeping Unit)</label>
+                    <input type="text" name="sku" class="form-control" placeholder="e.g. WATCH-001">
+                </div>
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+                    <input type="number" name="stock_quantity" class="form-control" value="0">
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select name="category" class="form-control">
+                        <option value="everyday">Everyday Elegance</option>
+                        <option value="elite">Elite Luxury</option>
+                        <option value="exclusive">Exclusive Collections</option>
+                        <option value="accessories">Premium Accessories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Brand (Optional)</label>
+                    <input type="text" name="brand" class="form-control" placeholder="e.g. PERFORMARE, AURA MILANO">
+                </div>
+                <div class="form-group">
+                    <label>Ribbon / Badge</label>
+                    <select name="badge" class="form-control">
+                        <option value="">None</option>
+                        <option value="Best Seller">Best Seller</option>
+                        <option value="New Arrival">New Arrival</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Exclusive">Exclusive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Main Image URL</label>
+                    <input type="url" name="image" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Extra Images (Comma separated URLs)</label>
+                    <input type="text" name="extra_images" class="form-control" placeholder="url1, url2, url3">
+                </div>
+                <div class="form-group">
+                    <label>Short Description (Card)</label>
+                    <textarea name="short_description" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Full Description (Details)</label>
+                    <textarea name="description" class="form-control" rows="4"></textarea>
+                </div>
+                <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Add Product</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- EDIT PRODUCT MODAL -->
+    <div id="editProductModal" class="modal">
+        <div class="modal-content">
+            <div class="section-header">
+                <h3>Edit Product</h3>
+                <button id="closeEditModal" style="background:none;border:none;color:white;cursor:pointer;font-size:1.5rem;">&times;</button>
+            </div>
+            <form id="editProductForm">
+                <input type="hidden" id="editProductId">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" id="editProductName" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Price (৳)</label>
+                    <input type="number" id="editProductPrice" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>SKU</label>
+                    <input type="text" id="editProductSku" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Stock Quantity</label>
+                    <input type="number" id="editProductStock" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem;">
+                        <input type="checkbox" id="editProductOnSale" style="width: auto;">
+                        <span>On Sale</span>
+                    </label>
+                </div>
+                <div class="form-group" id="salePriceGroup" style="display: none;">
+                    <label>Sale Price (৳)</label>
+                    <input type="number" id="editProductSalePrice" class="form-control">
+                    <small style="color: var(--text-muted); display: block; margin-top: 0.5rem;">
+                        Sale price must be less than regular price
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label>Category</label>
+                    <select id="editProductCategory" class="form-control">
+                        <option value="everyday">Everyday Elegance</option>
+                        <option value="elite">Elite Luxury</option>
+                        <option value="exclusive">Exclusive Collections</option>
+                        <option value="accessories">Premium Accessories</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Brand</label>
+                    <input type="text" id="editProductBrand" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Ribbon / Badge</label>
+                    <select id="editProductBadge" class="form-control">
+                        <option value="">None</option>
+                        <option value="Best Seller">Best Seller</option>
+                        <option value="New Arrival">New Arrival</option>
+                        <option value="Premium">Premium</option>
+                        <option value="Exclusive">Exclusive</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Main Image URL</label>
+                    <input type="url" id="editProductImage" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label>Extra Images (Comma separated)</label>
+                    <input type="text" id="editProductExtras" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label>Short Description</label>
+                    <textarea id="editProductShortDesc" class="form-control" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Full Description</label>
+                    <textarea id="editProductDesc" class="form-control" rows="4"></textarea>
+                </div>
+                <div style="display: flex; gap: 1rem; margin-top: 1.5rem;">
+                    <button type="submit" class="btn-primary" style="flex: 1;">Save Changes</button>
+                    <button type="button" id="cancelEditBtn" class="btn-outline" style="flex: 1;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div id="toast-container" style="position: fixed; bottom: 20px; right: 20px; z-index: 10000;"></div>
+
+    <script type="module">
+        import { supabase } from './supabase-config.js';
+
+        // --- TOAST NOTIFICATION SYSTEM ---
+        window.showToast = (message, type = 'success') => {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                background: ${type === 'success' ? 'var(--success)' : 'var(--danger)'};
+                color: white;
+                padding: 1rem 1.5rem;
+                margin-top: 10px;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                min-width: 300px;
+                animation: slideIn 0.3s ease-out forwards;
+            `;
+            
+            const icon = type === 'success' ? '✅' : '⚠️';
+            toast.innerHTML = `<span>${icon}</span> <span>${message}</span>`;
+            
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOut 0.3s ease-in forwards';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // --- MOBILE SIDEBAR TOGGLE ---
+        const mobileToggle = document.getElementById('mobileToggle');
+        const sidebar = document.getElementById('sidebar');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            sidebarOverlay.classList.toggle('active');
+        }
+
+        mobileToggle.addEventListener('click', toggleSidebar);
+        sidebarOverlay.addEventListener('click', toggleSidebar);
+
+        // Close sidebar when clicking nav link on mobile
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 992) {
+                    toggleSidebar();
+                }
+            });
+        });
+
+        // --- NAVIGATION ---
+        function switchView(viewName) {
+            document.querySelectorAll('.view-section').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+            document.getElementById(`${viewName}-view`).classList.add('active');
+            document.querySelector(`[data-view="${viewName}"]`).classList.add('active');
+            
+            const titles = { 
+                'dashboard': 'Dashboard Overview', 
+                'products': 'Product Management', 
+                'orders': 'Order Management' 
+            };
+            document.getElementById('pageTitle').innerText = titles[viewName];
+        }
+
+        // Nav click handlers
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const view = link.getAttribute('data-view');
+                switchView(view);
+            });
+        });
+
+        // View button handlers
+        document.querySelectorAll('[data-view-btn]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const view = btn.getAttribute('data-view-btn');
+                switchView(view);
+            });
+        });
+
+        // --- MODALS ---
+        const addModal = document.getElementById('addProductModal');
+        const editModal = document.getElementById('editProductModal');
+
+        document.getElementById('addProductBtn').addEventListener('click', () => {
+            addModal.style.display = 'flex';
+        });
+
+        document.getElementById('closeAddModal').addEventListener('click', () => {
+            addModal.style.display = 'none';
+        });
+
+        document.getElementById('closeEditModal').addEventListener('click', () => {
+            editModal.style.display = 'none';
+        });
+
+        document.getElementById('cancelEditBtn').addEventListener('click', () => {
+            editModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === addModal) addModal.style.display = 'none';
+            if (e.target === editModal) editModal.style.display = 'none';
+        });
+
+        // --- AUTH CHECK ---
+        async function checkAuth() {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) { 
+                window.location.href = 'login.html'; 
+                return; 
+            }
+        }
+        checkAuth();
+
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            await supabase.auth.signOut();
+            window.location.href = 'login.html';
+        });
+
+        // --- DATA LOADING & SEARCH ---
+        let allProducts = [];
+
+        async function loadDashboard() {
+            const { data: products } = await supabase.from('products').select('*').order('created_at', { ascending: false });
+            const { data: orders } = await supabase.from('orders').select('*').order('created_at', { ascending: false });
+
+            if (products) {
+                allProducts = products;
+                document.getElementById('totalProducts').innerText = products.length;
+                renderProducts(products);
+            }
+            if (orders) {
+                const validOrders = orders.filter(o => o.status !== 'cancelled');
+                const revenue = validOrders.reduce((sum, order) => sum + (order.total || 0), 0);
+                document.getElementById('totalRevenue').innerText = '৳' + revenue.toLocaleString();
+                document.getElementById('totalOrders').innerText = validOrders.length;
+                const avg = validOrders.length ? Math.round(revenue / validOrders.length) : 0;
+                document.getElementById('avgOrder').innerText = '৳' + avg.toLocaleString();
+                renderOrders(orders);
+                renderRecentOrders(orders.slice(0, 5));
+            }
+        }
+
+        // Search Functionality
+        document.getElementById('searchBar').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = allProducts.filter(p => 
+                p.name.toLowerCase().includes(term) || 
+                (p.sku && p.sku.toLowerCase().includes(term)) ||
+                p.category.toLowerCase().includes(term)
+            );
+            renderProducts(filtered);
+        });
+
+        function renderProducts(products) {
+            const tbody = document.getElementById('productsTable');
+            tbody.innerHTML = products.map(p => `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="${p.image}" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-light);">${p.name}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">
+                                    SKU: ${p.sku || 'N/A'} | ID: ${p.id}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="font-weight: 600;">৳${p.price.toLocaleString()}</td>
+                    <td><span style="padding: 4px 10px; background: rgba(255,255,255,0.1); border-radius: 12px; font-size: 0.8rem;">${p.category}</span></td>
+                    <td>
+                        <span class="${(p.stock_quantity || 0) > 0 ? 'text-success' : 'text-danger'}">
+                            ${(p.stock_quantity || 0) > 0 ? `${p.stock_quantity} in Stock` : 'Out of Stock'}
+                        </span>
+                    </td>
+                    <td>
+                        <button class="action-btn edit-product" data-id="${p.id}">✏️</button>
+                        <button class="action-btn delete-product" data-id="${p.id}" style="color: var(--danger);">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Add event listeners to buttons
+            document.querySelectorAll('.edit-product').forEach(btn => {
+                btn.addEventListener('click', () => editProduct(btn.getAttribute('data-id')));
+            });
+            document.querySelectorAll('.delete-product').forEach(btn => {
+                btn.addEventListener('click', () => deleteProduct(btn.getAttribute('data-id')));
+            });
+        }
+
+        function renderOrders(orders) {
+            const tbody = document.getElementById('allOrdersTable');
+            tbody.innerHTML = orders.map(o => `
+                <tr>
+                    <td>#${o.id}</td>
+                    <td>${o.shipping_info?.name || 'Guest'}</td>
+                    <td>${o.items ? o.items.length : 1} Items</td>
+                    <td style="font-weight: 600;">৳${o.total.toLocaleString()}</td>
+                    <td>
+                        <select class="order-status-select" data-id="${o.id}"
+                                style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); color: white; padding: 4px 8px; border-radius: 4px;">
+                            <option value="pending" ${o.status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="approved" ${o.status === 'approved' ? 'selected' : ''}>Approved</option>
+                            <option value="delivered" ${o.status === 'delivered' ? 'selected' : ''}>Delivered</option>
+                            <option value="cancelled" ${o.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button class="action-btn delete-order" data-id="${o.id}" style="color: var(--danger);" title="Delete Order">🗑️</button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Add event listeners
+            document.querySelectorAll('.order-status-select').forEach(select => {
+                select.addEventListener('change', () => {
+                    updateOrderStatus(select.getAttribute('data-id'), select.value);
+                });
+            });
+            document.querySelectorAll('.delete-order').forEach(btn => {
+                btn.addEventListener('click', () => deleteOrder(btn.getAttribute('data-id')));
+            });
+        }
+
+        async function updateOrderStatus(orderId, newStatus) {
+            try {
+                const { error } = await supabase
+                    .from('orders')
+                    .update({ status: newStatus })
+                    .eq('id', orderId);
+                
+                if (error) throw error;
+                showToast(`Order #${orderId} marked as ${newStatus}`, 'success');
+                loadDashboard();
+            } catch (err) {
+                console.error('Error updating order:', err);
+                showToast('Failed to update order status', 'error');
+            }
+        }
+
+        async function deleteOrder(orderId) {
+            if (!confirm('Are you sure you want to delete this order? This cannot be undone.')) return;
+            
+            try {
+                const { error } = await supabase
+                    .from('orders')
+                    .delete()
+                    .eq('id', orderId);
+                
+                if (error) throw error;
+                showToast('Order deleted successfully', 'success');
+                loadDashboard();
+            } catch (err) {
+                console.error('Error deleting order:', err);
+                showToast('Failed to delete order', 'error');
+            }
+        }
+
+        function renderRecentOrders(orders) {
+            const tbody = document.getElementById('recentOrdersTable');
+            tbody.innerHTML = orders.map(o => `
+                <tr>
+                    <td>#${o.id}</td>
+                    <td>${o.shipping_info?.name || 'Guest'}</td>
+                    <td style="font-weight: 600;">৳${o.total.toLocaleString()}</td>
+                    <td><span class="status-badge ${o.status === 'completed' ? 'status-completed' : 'status-pending'}">${o.status}</span></td>
+                    <td>${new Date(o.created_at).toLocaleDateString()}</td>
+                </tr>
+            `).join('');
+        }
+
+        // Add Product
+        document.getElementById('addProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            const productData = Object.fromEntries(formData.entries());
+            productData.price = parseFloat(productData.price);
+            productData.stock_quantity = parseInt(productData.stock_quantity) || 0;
+            
+            // Handle extra images
+            if(productData.extra_images) {
+                const urls = productData.extra_images.split(',').map(u => u.trim());
+                if(urls[0]) productData.image2 = urls[0];
+                if(urls[1]) productData.image3 = urls[1];
+                if(urls[2]) productData.image4 = urls[2];
+                delete productData.extra_images;
+            }
+
+            const { error } = await supabase.from('products').insert([productData]);
+            
+            if (error) {
+                showToast(error.message, 'error');
+            } else {
+                showToast('Product Added Successfully!');
+                addModal.style.display = 'none';
+                e.target.reset();
+                loadDashboard();
+            }
+        });
+
+        // Delete Product
+        async function deleteProduct(id) {
+            if(confirm('Delete this product?')) {
+                const { error } = await supabase.from('products').delete().eq('id', id);
+                if(!error) {
+                    showToast('Product Deleted');
+                    loadDashboard();
+                } else {
+                    showToast(error.message, 'error');
+                }
+            }
+        }
+
+        // Edit Product Setup
+        async function editProduct(id) {
+            const { data: product } = await supabase.from('products').select('*').eq('id', id).single();
+            if(product) {
+                document.getElementById('editProductId').value = product.id;
+                document.getElementById('editProductName').value = product.name;
+                document.getElementById('editProductPrice').value = product.price;
+                document.getElementById('editProductSku').value = product.sku || '';
+                document.getElementById('editProductStock').value = product.stock_quantity || 0;
+                document.getElementById('editProductOnSale').checked = product.is_on_sale || false;
+                document.getElementById('editProductSalePrice').value = product.sale_price || '';
+                
+                // Show/hide sale price field
+                document.getElementById('salePriceGroup').style.display = product.is_on_sale ? 'block' : 'none';
+                
+                document.getElementById('editProductCategory').value = product.category;
+                document.getElementById('editProductBrand').value = product.brand || '';
+                document.getElementById('editProductBadge').value = product.badge || '';
+                document.getElementById('editProductImage').value = product.image;
+                document.getElementById('editProductShortDesc').value = product.short_description || '';
+                document.getElementById('editProductDesc').value = product.description || '';
+                
+                // Combine extras
+                const extras = [product.image2, product.image3, product.image4].filter(Boolean).join(', ');
+                document.getElementById('editProductExtras').value = extras;
+                
+                editModal.style.display = 'flex';
+            }
+        }
+        
+        // Toggle sale price field
+        document.getElementById('editProductOnSale').addEventListener('change', function() {
+            document.getElementById('salePriceGroup').style.display = this.checked ? 'block' : 'none';
+        });
+
+        // Handle Edit Submit
+        document.getElementById('editProductForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const id = document.getElementById('editProductId').value;
+            
+            const updates = {
+                name: document.getElementById('editProductName').value,
+                price: parseFloat(document.getElementById('editProductPrice').value),
+                sku: document.getElementById('editProductSku').value,
+                stock_quantity: parseInt(document.getElementById('editProductStock').value),
+                is_on_sale: document.getElementById('editProductOnSale').checked,
+                sale_price: document.getElementById('editProductOnSale').checked ? 
+                    parseFloat(document.getElementById('editProductSalePrice').value) : null,
+                category: document.getElementById('editProductCategory').value,
+                brand: document.getElementById('editProductBrand').value,
+                badge: document.getElementById('editProductBadge').value,
+                image: document.getElementById('editProductImage').value,
+                short_description: document.getElementById('editProductShortDesc').value,
+                description: document.getElementById('editProductDesc').value
+            };
+
+            // Handle extras
+            const extras = document.getElementById('editProductExtras').value.split(',').map(u => u.trim());
+            updates.image2 = extras[0] || null;
+            updates.image3 = extras[1] || null;
+            updates.image4 = extras[2] || null;
+
+            const { error } = await supabase.from('products').update(updates).eq('id', id);
+            if(!error) {
+                showToast('Product Updated Successfully!');
+                editModal.style.display = 'none';
+                loadDashboard();
+            } else {
+                showToast(error.message, 'error');
+            }
+        });
+
+        // Init
+        loadDashboard();
+    </script>
+
+</body>
+</html>

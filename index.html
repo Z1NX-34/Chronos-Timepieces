@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Chronos Timepieces - Bangladesh's premier destination for luxury watches. Discover elegant timepieces where time meets elegance."
+    />
+    <meta
+      name="keywords"
+      content="luxury watches, Bangladesh, Chronos, timepieces, premium watches, Swiss watches"
+    />
+    <meta name="author" content="Chronos Timepieces" />
+    <link rel="icon" href="assets/logo/favicon.jpg" type="image/jpeg">
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Chronos Timepieces - Where Time Meets Elegance"
+    />
+    <meta
+      property="og:description"
+      content="Discover luxury timepieces in Bangladesh"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets/logo/favicon.jpg" />
+    <title>Chronos Timepieces</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="enhanced-features.css" />
+    <link rel="stylesheet" href="categories-modal.css" />
+    <link rel="stylesheet" href="filter-controls.css" />
+  </head>
+  <body>
+    <div id="error-display" style="display:none; position:fixed; top:0; left:0; width:100%; background:red; color:white; padding:10px; z-index:9999;"></div>
+    <script>
+      window.onerror = function(msg, url, line) {
+        const el = document.getElementById('error-display');
+        el.style.display = 'block';
+        el.innerHTML += `Error: ${msg} at line ${line}<br>`;
+      };
+      window.onunhandledrejection = function(event) {
+        const el = document.getElementById('error-display');
+        el.style.display = 'block';
+        el.innerHTML += `Promise Error: ${event.reason}<br>`;
+      };
+    </script>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <!-- Top Layer: Logo, Search, Actions -->
+        <div class="nav-top">
+            <div class="container">
+                <a href="index.html" class="logo-container">
+                    <img src="assets/logo/chronos-logo.jpg" alt="Chronos Icon" class="logo-icon">
+                    <div class="logo-text">
+                        <div class="logo-brand">Chronos Timepieces</div>
+                        <div class="logo-tagline">Where Time Meets Elegance</div>
+                    </div>
+                </a>
+
+                <div class="nav-right-section">
+                    <div class="search-bar-modern">
+                        <input type="text" id="searchInput" class="search-input" placeholder="Search">
+                        <button class="search-btn-modern">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                        <div id="searchPreview" class="search-preview"></div>
+                    </div>
+                    
+                    <div class="nav-actions">
+                        <button class="nav-icon-btn" id="accountBtn" aria-label="Account">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span class="nav-icon-label">Login</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="wishlistNavBtn" aria-label="Wishlist" onclick="window.location.href='wishlist.html'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="nav-icon-label">Wishlist</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="cartBtn" aria-label="Cart">
+                            <div class="cart-count">0</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <span class="nav-icon-label">Cart</span>
+                        </button>
+                    </div>
+                    
+                    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Search Bar -->
+        <div class="mobile-search-container">
+            <div class="container">
+                <div class="search-bar-modern mobile-search">
+                    <input type="text" id="mobileSearchInput" class="search-input" placeholder="Search products...">
+                    <button class="search-btn-modern">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Layer: Navigation Links -->
+        <div class="nav-bottom">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="everyday-elegance.html">Everyday Elegance</a></li>
+                    <li><a href="elite-luxury.html">Elite Luxury</a></li>
+                    <li><a href="exclusive-collections.html">Exclusive Collections</a></li>
+                    <li><a href="premium-accessories.html">Premium Accessories</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-modern">
+        <div class="particles-container" id="particles">
+            <!-- Watch-themed animated background -->
+            <div class="particle p1"></div>
+            <div class="particle p2"></div>
+            <div class="particle p3"></div>
+            <div class="particle p4"></div>
+            <div class="particle p5"></div>
+            
+            <!-- Floating watch gears -->
+            <div class="watch-gear gear-1">
+                <svg viewBox="0 0 100 100" class="gear-svg">
+                    <circle cx="50" cy="50" r="30" fill="none" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="20" fill="none" stroke="rgba(212, 175, 55, 0.15)" stroke-width="1"/>
+                    <line x1="50" y1="20" x2="50" y2="25" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="50" y1="75" x2="50" y2="80" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="20" y1="50" x2="25" y2="50" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="75" y1="50" x2="80" y2="50" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="32" y1="32" x2="35" y2="35" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="65" y1="65" x2="68" y2="68" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="68" y1="32" x2="65" y2="35" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                    <line x1="35" y1="65" x2="32" y2="68" stroke="rgba(212, 175, 55, 0.15)" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="watch-gear gear-2">
+                <svg viewBox="0 0 100 100" class="gear-svg">
+                    <circle cx="50" cy="50" r="25" fill="none" stroke="rgba(139, 92, 246, 0.12)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="15" fill="none" stroke="rgba(139, 92, 246, 0.12)" stroke-width="1"/>
+                    <line x1="50" y1="25" x2="50" y2="30" stroke="rgba(139, 92, 246, 0.12)" stroke-width="2"/>
+                    <line x1="50" y1="70" x2="50" y2="75" stroke="rgba(139, 92, 246, 0.12)" stroke-width="2"/>
+                    <line x1="25" y1="50" x2="30" y2="50" stroke="rgba(139, 92, 246, 0.12)" stroke-width="2"/>
+                    <line x1="70" y1="50" x2="75" y2="50" stroke="rgba(139, 92, 246, 0.12)" stroke-width="2"/>
+                </svg>
+            </div>
+            <div class="watch-gear gear-3">
+                <svg viewBox="0 0 100 100" class="gear-svg">
+                    <circle cx="50" cy="50" r="28" fill="none" stroke="rgba(212, 175, 55, 0.1)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="18" fill="none" stroke="rgba(212, 175, 55, 0.1)" stroke-width="1"/>
+                    <line x1="50" y1="22" x2="50" y2="27" stroke="rgba(212, 175, 55, 0.1)" stroke-width="2"/>
+                    <line x1="50" y1="73" x2="50" y2="78" stroke="rgba(212, 175, 55, 0.1)" stroke-width="2"/>
+                    <line x1="22" y1="50" x2="27" y2="50" stroke="rgba(212, 175, 55, 0.1)" stroke-width="2"/>
+                    <line x1="73" y1="50" x2="78" y2="50" stroke="rgba(212, 175, 55, 0.1)" stroke-width="2"/>
+                </svg>
+            </div>
+            
+            <!-- Clock hands decorative elements -->
+            <div class="watch-hand hand-1"></div>
+            <div class="watch-hand hand-2"></div>
+            <div class="watch-hand hand-3"></div>
+            
+            <!-- Tiny watch dial markers -->
+            <div class="watch-marker marker-1"></div>
+            <div class="watch-marker marker-2"></div>
+            <div class="watch-marker marker-3"></div>
+            <div class="watch-marker marker-4"></div>
+            <div class="watch-marker marker-5"></div>
+            
+            <!-- Large decorative watch with animated hands -->
+            <div class="hero-watch-large" id="heroWatch">
+                <svg viewBox="0 0 200 200" class="watch-face-svg">
+                    <!-- Outer ring -->
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="rgba(212, 175, 55, 0.2)" stroke-width="2"/>
+                    
+                    <!-- Inner decorative rings -->
+                    <circle cx="100" cy="100" r="85" fill="none" stroke="rgba(212, 175, 55, 0.15)" stroke-width="1"/>
+                    <circle cx="100" cy="100" r="75" fill="none" stroke="rgba(139, 92, 246, 0.1)" stroke-width="1"/>
+                    
+                    <!-- Hour markers -->
+                    <line x1="100" y1="15" x2="100" y2="25" stroke="rgba(212, 175, 55, 0.4)" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="175" y1="100" x2="185" y2="100" stroke="rgba(212, 175, 55, 0.4)" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="100" y1="175" x2="100" y2="185" stroke="rgba(212, 175, 55, 0.4)" stroke-width="3" stroke-linecap="round"/>
+                    <line x1="15" y1="100" x2="25" y2="100" stroke="rgba(212, 175, 55, 0.4)" stroke-width="3" stroke-linecap="round"/>
+                    
+                    <!-- Quarter hour markers -->
+                    <line x1="150" y1="36" x2="157" y2="29" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="164" y1="50" x2="171" y2="43" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="164" y1="150" x2="171" y2="157" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="150" y1="164" x2="157" y2="171" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="50" y1="164" x2="43" y2="171" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="36" y1="150" x2="29" y2="157" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="36" y1="50" x2="29" y2="43" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    <line x1="50" y1="36" x2="43" y2="29" stroke="rgba(212, 175, 55, 0.25)" stroke-width="2"/>
+                    
+                    <!-- Center decorative circle -->
+                    <circle cx="100" cy="100" r="8" fill="rgba(212, 175, 55, 0.3)" stroke="rgba(212, 175, 55, 0.5)" stroke-width="1"/>
+                </svg>
+                
+                <!-- Animated clock hands -->
+                <div class="watch-hands-container">
+                    <!-- Hour hand -->
+                    <div class="clock-hand hour-hand" id="hourHand"></div>
+                    <!-- Minute hand -->
+                    <div class="clock-hand minute-hand" id="minuteHand"></div>
+                    <!-- Second hand -->
+                    <div class="clock-hand second-hand" id="secondHand"></div>
+                    <!-- Center dot -->
+                    <div class="hand-center"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container hero-content-wrapper">
+            <div class="hero-text-content animate-on-scroll">
+                <h2 class="hero-subtitle">Exquisite Craftsmanship</h2>
+                <h1 class="hero-title">Timeless <span class="gold-text">Elegance</span> <br> on Your Wrist</h1>
+                <p class="hero-description" style="font-size: 1.2em;">
+                    “আমাদের এক্সক্লুসিভ ঘড়ির সাথে প্রতিটি মুহূর্তকে করে তুলুন আরও অনন্য।”
+                </p>
+                <div class="hero-cta-group">
+                    <a href="#all-products" class="btn btn-primary hero-btn hero-products-btn">
+                        <span class="btn-icon">🛍️</span>
+                        View All Products
+                    </a>
+                    <a href="about.html" class="btn btn-outline hero-btn">Our Story</a>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Premium Brands</span>
+                    </div>
+                    <div class="stat-divider"></div>
+                    <div class="stat-item">
+                        <span class="stat-number">10k+</span>
+                        <span class="stat-label">Happy Collectors</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hero-image-content">
+                <div class="hero-circle-bg"></div>
+                
+                <!-- Infinite Watch Carousel -->
+                <div class="hero-carousel-container" id="heroCarousel">
+                    <div class="hero-carousel-track" id="carouselTrack">
+                        <!-- Watch 1 -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-3.png" alt="Skeleton Masterpiece" class="hero-carousel-image">
+                        </div>
+                        <!-- Watch 2 -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-1.png" alt="Heritage Classic" class="hero-carousel-image">
+                        </div>
+                        <!-- Watch 3 -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-2.png" alt="Royal Elegance" class="hero-carousel-image">
+                        </div>
+                        <!-- Watch 4 -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-4.png" alt="Modern Luxury" class="hero-carousel-image">
+                        </div>
+                        <!-- Watch 5 -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-5.png" alt="Sport Elite" class="hero-carousel-image">
+                        </div>
+                        <!-- Duplicate items for infinite loop -->
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-3.png" alt="Skeleton Masterpiece" class="hero-carousel-image">
+                        </div>
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-1.png" alt="Heritage Classic" class="hero-carousel-image">
+                        </div>
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-2.png" alt="Royal Elegance" class="hero-carousel-image">
+                        </div>
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-4.png" alt="Modern Luxury" class="hero-carousel-image">
+                        </div>
+                        <div class="hero-carousel-item">
+                            <img src="assets/images/watch-5.png" alt="Sport Elite" class="hero-carousel-image">
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation Dots -->
+                    <div class="hero-carousel-dots" id="carouselDots"></div>
+                </div>
+                
+                <!-- Feature Tags -->
+                <div class="hero-feature-tag tag-top-right">
+                    <span class="tag-label">Premium Quality Watches</span>
+                    <div class="tag-line"></div>
+                </div>
+                
+                <div class="hero-feature-tag tag-bottom-left">
+                    <span class="tag-label">All in one place</span>
+                    <div class="tag-line"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll-indicator">
+            <div class="mouse">
+                <div class="wheel"></div>
+            </div>
+            <div class="arrow">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section class="services-section">
+        <div class="services-grid">
+            <!-- Fast Shipping -->
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                        <!-- Truck body -->
+                        <rect x="8" y="28" width="32" height="20" fill="#4A90E2" stroke="#2E5C8A" stroke-width="2"/>
+                        <!-- Truck cab -->
+                        <path d="M 40 28 L 48 28 L 52 36 L 52 48 L 40 48 Z" fill="#5BA3F5" stroke="#2E5C8A" stroke-width="2"/>
+                        <!-- Wheels -->
+                        <circle cx="18" cy="48" r="6" fill="#333" stroke="#000" stroke-width="2"/>
+                        <circle cx="18" cy="48" r="3" fill="#666"/>
+                        <circle cx="46" cy="48" r="6" fill="#333" stroke="#000" stroke-width="2"/>
+                        <circle cx="46" cy="48" r="3" fill="#666"/>
+                        <!-- Clock on truck -->
+                        <circle cx="24" cy="36" r="6" fill="#FFD700" stroke="#DAA520" stroke-width="1.5"/>
+                        <line x1="24" y1="36" x2="24" y2="32" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                        <line x1="24" y1="36" x2="27" y2="36" stroke="#000" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">Fast Shipping</div>
+                    <div class="service-description">
+                        <table style="width: 100%; text-align: left; margin: 0 auto; max-width: 250px;">
+                            <tr style="font-weight: 600; border-bottom: 1px solid rgba(212, 175, 55, 0.3);">
+                                <td style="padding: 0.25rem 0.5rem;">এলাকা</td>
+                                <td style="padding: 0.25rem 0.5rem; text-align: right;">ডেলিভারি চার্জ</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.25rem 0.5rem;">ঢাকা সিটি</td>
+                                <td style="padding: 0.25rem 0.5rem; text-align: right;">৬০ টাকা</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.25rem 0.5rem;">ঢাকা সাব এরিয়া</td>
+                                <td style="padding: 0.25rem 0.5rem; text-align: right;">১০০ টাকা</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 0.25rem 0.5rem;">ঢাকার বাইরে</td>
+                                <td style="padding: 0.25rem 0.5rem; text-align: right;">১২০ টাকা</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Return Policy -->
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                        <!-- Shopping cart -->
+                        <path d="M 12 16 L 18 16 L 24 40 L 48 40" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                        <circle cx="26" cy="48" r="4" fill="#fff"/>
+                        <circle cx="44" cy="48" r="4" fill="#fff"/>
+                        <path d="M 18 16 L 22 32 L 46 32 L 50 20 L 18 20" fill="none" stroke="#fff" stroke-width="2.5"/>
+                        <!-- Return arrow -->
+                        <path d="M 38 12 Q 28 8 20 12" stroke="#FFD700" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                        <path d="M 20 12 L 16 10 L 18 6" fill="#FFD700"/>
+                    </svg>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">Return Policy</div>
+                    <div class="service-description">ডেলিভারি ম্যান থাকাকালীন প্রোডাক্ট চেক করতে হবে। কাস্টমার ইচ্ছে করলে ডেলিভারি চার্জ দিয়ে পণ্য রিটার্ন করতে পারবেন। ভুল/ত্রুটিপূর্ণ পণ্য হলে চার্জ Chronos Timepieces বহন করবে।</div>
+                </div>
+            </div>
+
+            <!-- Secure Payment -->
+            <div class="service-item">
+                <div class="service-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+                        <!-- Phone/Device -->
+                        <rect x="20" y="12" width="24" height="40" rx="2" fill="#4A5568" stroke="#2D3748" stroke-width="2"/>
+                        <rect x="22" y="16" width="20" height="28" fill="#5BA3F5"/>
+                        <!-- Dollar sign -->
+                        <text x="32" y="36" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#FFD700" text-anchor="middle">$</text>
+                        <!-- Home button -->
+                        <circle cx="32" cy="48" r="2" fill="#2D3748"/>
+                    </svg>
+                </div>
+                <div class="service-content">
+                    <div class="service-title">Secure Payment</div>
+                    <div class="service-description">Fully secured Cash on Delivery service no pre charges.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOT CATEGORIES SECTION -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title shimmer-text animate-on-scroll" style="text-align: center; margin-bottom: 1rem;">Hot Categories</h2>
+            
+            <div class="categories-grid">
+                <!-- Card 1: Everyday Elegance -->
+                <div class="category-card animate-on-scroll" style="animation-delay: 0.1s; cursor: pointer;" onclick="window.location.href='everyday-elegance.html'">
+                    <img src="assets/images/everyday-elegance.jpg" alt="Everyday Elegance" class="category-bg lazy-load">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <h3>Everyday Elegance</h3>
+                        <span class="category-count" data-category="everyday">Loading...</span>
+                        <a href="everyday-elegance.html" class="btn-text">Discover More <span class="arrow">→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Elite Luxury -->
+                <div class="category-card animate-on-scroll" style="animation-delay: 0.2s; cursor: pointer;" onclick="window.location.href='elite-luxury.html'">
+                    <img src="assets/images/elite-luxury.png" alt="Elite Luxury" class="category-bg lazy-load">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <h3>Elite<br>Luxury</h3>
+                        <span class="category-count" data-category="elite">Loading...</span>
+                        <a href="elite-luxury.html" class="btn-text">View Exclusive <span class="arrow">→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Exclusive Collections -->
+                <div class="category-card animate-on-scroll" style="transition-delay: 0.3s; cursor: pointer;" onclick="window.location.href='exclusive-collections.html'">
+                    <img src="assets/images/exclusive-collections.png" alt="Exclusive Collections" class="category-bg">
+                    <div class="category-overlay"></div>
+                    <div class="category-content">
+                        <h3>Exclusive Collections</h3>
+                        <span class="category-count" data-category="exclusive">Loading...</span>
+                        <a href="exclusive-collections.html" class="btn-text" style="display: block; margin-top: 0.5rem;">Discover More <span class="arrow">→</span></a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Premium Accessories -->
+                <div class="category-card animate-on-scroll" style="transition-delay: 0.4s; cursor: pointer;" onclick="window.location.href='premium-accessories.html'">
+                    <div class="category-bg accessories-bg">
+                        <div class="icon-pattern"></div>
+                    </div>
+                    <div class="category-content dark-text">
+                        <h3>Premium Accessories</h3>
+                        <span class="category-count" data-category="accessories">Loading...</span>
+                        <a href="premium-accessories.html" class="btn-text" style="display: block; margin-top: 0.5rem;">Discover More <span class="arrow">→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- ALL PRODUCTS SECTION -->
+    <section class="all-products-section" id="all-products" style="padding: 4rem 0;">
+      <div class="container">
+        <h2 class="section-title shimmer-text animate-on-scroll" style="text-align: center">
+          All Products
+        </h2>
+        <div class="section-divider animate-on-scroll"></div>
+
+        <div class="filter-controls" style="text-align: center; margin: 2rem 0">
+          <button class="btn btn-outline filter-btn active" data-filter="all">All</button>
+          <button class="btn btn-outline filter-btn" data-filter="everyday">Everyday</button>
+          <button class="btn btn-outline filter-btn" data-filter="elite">Elite</button>
+          <button class="btn btn-outline filter-btn" data-filter="exclusive">Exclusive</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Dynamically Loaded Products -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL CONNECT SECTION -->
+    <section class="social-connect-section" style="padding: 4rem 0; background: linear-gradient(to bottom, #0a1b2a, #050e17); border-top: 1px solid rgba(212, 175, 55, 0.15);">
+      <div class="container">
+        <div class="social-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+          
+          <div class="social-header" style="text-align: center;">
+            <h2 class="section-title shimmer-text" style="font-size: 2.2rem; margin-bottom: 0.5rem; display: inline-block;">Connect With Us</h2>
+            <p style="color: rgba(255,255,255,0.6); font-size: 1rem; letter-spacing: 0.5px;">Join our community of watch enthusiasts</p>
+          </div>
+          
+          <div class="social-links-container" style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;">
+            
+            <!-- Facebook -->
+            <a href="#" class="social-card facebook-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <path fill="#1877F2" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/>
+                  <path fill="#fff" d="M26.572 29.036h4.917l0.772-4.995h-5.69v-2.73c0-1.373.627-2.707 2.745-2.707h2.125v-4.253c-0.368-0.05-1.631-0.158-3.102-0.158-3.068 0-5.171 1.873-5.171 5.317v4.531h-3.454v4.995h3.454v12.098c1.155.181 2.341.277 3.551.277.816 0 1.619-.044 2.403-.128l-0.55-12.197Z"/>
+                </svg>
+              </div>
+              <span class="social-name">Facebook</span>
+            </a>
+            
+            <!-- Instagram -->
+            <a href="#" class="social-card instagram-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <radialGradient id="yOrnnhliCrdS2gy~4tD8ma" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#fd5" />
+                    <stop offset=".328" stop-color="#ff543e" />
+                    <stop offset=".348" stop-color="#ff523f" />
+                    <stop offset=".504" stop-color="#ff2947" />
+                    <stop offset=".643" stop-color="#ff0a4e" />
+                    <stop offset=".761" stop-color="#fe0050" />
+                    <stop offset=".841" stop-color="#f00" />
+                  </radialGradient>
+                  <path fill="url(#yOrnnhliCrdS2gy~4tD8ma)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+                  <radialGradient id="yOrnnhliCrdS2gy~4tD8mb" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#4168c9" />
+                    <stop offset=".999" stop-color="#4168c9" stop-opacity="0" />
+                  </radialGradient>
+                  <path fill="url(#yOrnnhliCrdS2gy~4tD8mb)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+                  <path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z" />
+                  <circle cx="31.5" cy="16.5" r="1.5" fill="#fff" />
+                  <path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z" />
+                </svg>
+              </div>
+              <span class="social-name">Instagram</span>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/8801604098325" class="social-card whatsapp-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+                  <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+                  <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,4.29C13.158,4.29,4.32,13.135,4.315,23.986c-0.001,3.612,0.972,6.996,2.643,9.902L4.156,43.844l10.19-2.67c2.81,1.55,5.99,2.373,9.244,2.373c10.856,0,19.694-8.845,19.699-19.696C43.301,13.298,34.87,4.29,24.014,4.29L24.014,4.29z" />
+                  <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.163-4.627c-8.707,0-15.794,7.087-15.798,15.796c-0.001,2.785,0.727,5.503,2.111,7.901l-2.243,8.192l8.379-2.197c2.316,1.264,4.925,1.93,7.548,1.931h0.003c8.705,0,15.792-7.087,15.797-15.796C39.812,19.821,38.157,15.814,35.176,12.832z" />
+                  <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">WhatsApp</span>
+                <span class="social-detail">+880 1604-098325</span>
+              </div>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMPLIFIED FOOTER -->
+    <footer class="footer" style="padding: 2rem 0; background: #050e17;">
+      <div class="container">
+        <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+          
+          <div class="footer-brand">
+            <h3 style="margin: 0; font-size: 1.5rem; color: var(--gold);">Chronos Timepieces</h3>
+            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.7;">Where Time Meets Elegance</p>
+          </div>
+
+          <div class="footer-copyright" style="text-align: right;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.6;">
+              &copy; 2025 Chronos Timepieces. All rights reserved.
+            </p>
+            <div style="margin-top: 0.5rem;">
+              <a href="privacy.html" style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-right: 1rem; text-decoration: none;">Privacy Policy</a>
+              <a href="terms.html" style="color: rgba(255,255,255,0.5); font-size: 0.85rem; text-decoration: none;">Terms of Service</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+    <!-- QUICK VIEW MODAL -->
+    <div class="modal" id="quickViewModal">
+      <div class="modal-content">
+        <button class="modal-close" id="modalClose">×</button>
+        <div style="padding: 3rem">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+              gap: 3rem;
+              align-items: center;
+            "
+          >
+            <div>
+              <img
+                id="modalImage"
+                src=""
+                alt="Product"
+                style="width: 100%; border-radius: 8px"
+              />
+            </div>
+            <div>
+              <h2
+                id="modalTitle"
+                class="shimmer-text"
+                style="margin-bottom: 1rem"
+              ></h2>
+              <p
+                id="modalPrice"
+                class="product-price"
+                style="font-size: 2rem; margin-bottom: 1.5rem"
+              ></p>
+              <p
+                id="modalDescription"
+                style="
+                  font-size: 1.125rem;
+                  line-height: 1.8;
+                  margin-bottom: 2rem;
+                "
+              ></p>
+              <button
+                class="btn btn-primary"
+                style="width: 100%; padding: 1.25rem"
+              >
+                Add to Cart
+              </button>
+              <button
+                class="btn btn-outline"
+                style="width: 100%; padding: 1.25rem; margin-top: 1rem"
+              >
+                Contact for Details
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-nav-items">
+        <a href="index.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item" onclick="event.preventDefault(); openCategoriesModal();">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Categories</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="mobile-nav-badge" style="display: none;">0</span>
+        </a>
+        <a href="profile.html" class="mobile-nav-item" id="mobileAccountBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Account</span>
+        </a>
+      </div>
+    </nav>
+
+    <!-- Categories Modal (Mobile) -->
+    <div class="categories-modal" id="categoriesModal">
+      <div class="modal-overlay" onclick="closeCategoriesModal()"></div>
+      <div class="modal-content-categories">
+        <div class="modal-header">
+          <h3>Categories</h3>
+          <button class="modal-close-btn" onclick="closeCategoriesModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="categories-grid-modal">
+          <!-- Everyday Elegance -->
+          <a href="everyday-elegance.html" class="category-card-modal">
+            <img src="assets/images/everyday-elegance.jpg" alt="Everyday Elegance" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Everyday<br>Elegance</h4>
+            </div>
+          </a>
+          
+          <!-- Elite Luxury -->
+          <a href="elite-luxury.html" class="category-card-modal">
+            <img src="assets/images/elite-luxury.png" alt="Elite Luxury" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Elite<br>Luxury</h4>
+            </div>
+          </a>
+          
+          <!-- Exclusive Collections -->
+          <a href="exclusive-collections.html" class="category-card-modal">
+            <img src="assets/images/exclusive-collections.png" alt="Exclusive Collections" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Exclusive<br>Collections</h4>
+            </div>
+          </a>
+          
+          <!-- Premium Accessories -->
+          <a href="premium-accessories.html" class="category-card-modal">
+            <div class="category-bg-modal accessories-bg">
+              <div class="icon-pattern"></div>
+            </div>
+            <div class="category-content-modal dark-text">
+              <h4>Premium<br>Accessories</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script type="module" src="script.js"></script>
+    <script type="module" src="enhanced-features.js"></script>
+    <script>
+      // Categories Modal Functions
+      function openCategoriesModal() {
+        document.getElementById('categoriesModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+      
+      function closeCategoriesModal() {
+        document.getElementById('categoriesModal').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+      
+      // Close modal when clicking outside
+      document.getElementById('categoriesModal')?.addEventListener('click', function(e) {
+        if (e.target === this) {
+          closeCategoriesModal();
+        }
+      });
+    </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/8801604098325" class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
+      <div class="floating-whatsapp-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,4.29C13.158,4.29,4.32,13.135,4.315,23.986c-0.001,3.612,0.972,6.996,2.643,9.902L4.156,43.844l10.19-2.67c2.81,1.55,5.99,2.373,9.244,2.373c10.856,0,19.694-8.845,19.699-19.696C43.301,13.298,34.87,4.29,24.014,4.29L24.014,4.29z" />
+          <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.163-4.627c-8.707,0-15.794,7.087-15.798,15.796c-0.001,2.785,0.727,5.503,2.111,7.901l-2.243,8.192l8.379-2.197c2.316,1.264,4.925,1.93,7.548,1.931h0.003c8.705,0,15.792-7.087,15.797-15.796C39.812,19.821,38.157,15.814,35.176,12.832z" />
+          <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="floating-whatsapp-text">
+        <span class="floating-whatsapp-label">Chat with us</span>
+        <span class="floating-whatsapp-number">+880 1604-098325</span>
+      </div>
+    </a>
+  </body>
+</html>

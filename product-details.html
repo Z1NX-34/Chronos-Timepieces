@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chronos Timepieces - Product Details">
+    <link rel="icon" href="assets/logo/favicon.jpg" type="image/jpeg">
+    <title>Heritage Classic - Chronos Timepieces</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- NAVIGATION -->
+    <nav class="navbar" id="navbar">
+        <!-- Top Layer: Logo, Search, Actions -->
+        <div class="nav-top">
+            <div class="container">
+                <a href="index.html" class="logo-container">
+                    <img src="assets/logo/chronos-logo.jpg" alt="Chronos Icon" class="logo-icon">
+                    <div class="logo-text">
+                        <div class="logo-brand">Chronos Timepieces</div>
+                        <div class="logo-tagline">Where Time Meets Elegance</div>
+                    </div>
+                </a>
+
+                <div class="nav-right-section">
+                    <div class="search-bar-modern">
+                        <input type="text" placeholder="Search timepieces...">
+                        <button class="search-btn-modern">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                        </button>
+                    </div>
+                    
+                    <div class="nav-actions">
+                        <button class="nav-icon-btn" id="accountBtn" aria-label="Account">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                            <span class="nav-icon-label">Login</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="wishlistNavBtn" aria-label="Wishlist" onclick="window.location.href='wishlist.html'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                            <span class="nav-icon-label">Wishlist</span>
+                        </button>
+                        
+                        <button class="nav-icon-btn" id="cartBtn" aria-label="Cart">
+                            <div class="cart-count">0</div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            <span class="nav-icon-label">Cart</span>
+                        </button>
+                    </div>
+                    
+                    <button class="burger-menu" id="burgerMenu" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Layer: Navigation Links -->
+        <div class="nav-bottom">
+            <div class="container">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="everyday-elegance.html">Everyday Elegance</a></li>
+                    <li><a href="elite-luxury.html">Elite Luxury</a></li>
+                    <li><a href="exclusive-collections.html">Exclusive Collections</a></li>
+                    <li><a href="premium-accessories.html">Premium Accessories</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMBS -->
+    <div class="breadcrumbs-container">
+        <div class="container">
+            <ul class="breadcrumbs">
+                <li><a href="index.html">HOME</a></li>
+                <li><span class="separator">/</span></li>
+                <li><a href="#">STORE</a></li>
+                <li><span class="separator">/</span></li>
+                <li><a href="exclusive-collections.html">EXCLUSIVE COLLECTIONS</a></li>
+                <li><span class="separator">/</span></li>
+                <li><span class="current">HERITAGE CLASSIC (PHANTOM EDITION)</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- PRODUCT TITLE SECTION -->
+    <section class="product-title-section">
+        <div class="container">
+            <h1 class="main-product-title">HERITAGE CLASSIC (PHANTOM EDITION)</h1>
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAILS -->
+    <section class="product-details-section" id="productDetailsSection" style="display: none;">
+        <div class="container">
+            <div class="product-details-container">
+                <!-- Left: Image Gallery -->
+                <div class="product-gallery">
+                    <div class="main-image-container">
+                        <div class="exclusive-tag">EXCLUSIVE</div>
+                        <img src="assets/images/watch-1.png" alt="Heritage Classic" class="main-image" id="mainImage">
+                    </div>
+                    <div class="thumbnail-list">
+                        <div class="thumbnail active" onclick="changeImage('assets/images/watch-1.png', this)">
+                            <img src="assets/images/watch-1.png" alt="View 1">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('assets/images/watch-2.png', this)">
+                            <img src="assets/images/watch-2.png" alt="View 2">
+                        </div>
+                        <div class="thumbnail" onclick="changeImage('assets/images/watch-3.png', this)">
+                            <img src="assets/images/watch-3.png" alt="View 3">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Product Info -->
+                <div class="product-info-panel">
+                    <h2 class="info-title">HERITAGE CLASSIC (PHANTOM EDITION): STEALTH MEETS SOPHISTICATION. 🖤</h2>
+                    
+                    <div class="info-description">
+                        <p>Unveil the allure of darkness with the Heritage Classic (Phantom Edition). This timepiece combines a sleek black leather strap with a polished stainless steel case, framing a mesmerizing skeleton dial that reveals the intricate automatic movement within. Designed for those who embrace understated luxury and mechanical artistry.</p>
+                    </div>
+
+                    <div class="price-block">
+                        <span class="current-price">৳ 450,000</span>
+                        <span class="old-price">৳ 550,000</span>
+                        <span class="discount-badge">-18%</span>
+                    </div>
+
+                    <div class="meta-details">
+                        <div class="meta-row">
+                            <span class="meta-label">BRAND:</span>
+                            <span class="meta-value">CHRONOS</span>
+                        </div>
+                        <div class="meta-row">
+                            <span class="meta-label">SKU:</span>
+                            <span class="meta-value">Loading...</span>
+                        </div>
+                        <div class="meta-row" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                            <span class="meta-label">SHIPPING:</span>
+                            <div class="shipping-options" style="width: 100%;">
+                                <label class="shipping-option" style="display: flex; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;">
+                                    <input type="radio" name="shipping" value="inside" checked style="margin-right: 0.75rem;">
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Inside Dhaka</div>
+                                        <div style="font-size: 0.85rem; opacity: 0.7;">Delivery within 1-2 business days</div>
+                                    </div>
+                                    <span style="color: #d4af37; font-weight: 600;">৳ 60</span>
+                                </label>
+                                <label class="shipping-option" style="display: flex; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;">
+                                    <input type="radio" name="shipping" value="outside" style="margin-right: 0.75rem;">
+                                    <div style="flex: 1;">
+                                        <div style="font-weight: 600; margin-bottom: 0.25rem;">Outside Dhaka</div>
+                                        <div style="font-size: 0.85rem; opacity: 0.7;">Delivery within 3-5 business days</div>
+                                    </div>
+                                    <span style="color: #d4af37; font-weight: 600;">৳ 120</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quantity-selector">
+                        <button class="qty-btn" onclick="decrementQty()">-</button>
+                        <input type="number" id="quantity" value="1" min="1" max="10" readonly>
+                        <button class="qty-btn" onclick="incrementQty()">+</button>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-add-cart" id="addToCartBtn">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+                            ADD TO CART
+                        </button>
+                        <button class="btn-buy-now" id="buyNowBtn">BUY NOW</button>
+                        <button class="wishlist-btn" id="detailsWishlistBtn" aria-label="Add to Wishlist" style="width: 50px; height: 50px; border-radius: 8px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </button>
+                    </div>
+
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                            <span>2 Year Warranty</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Fast Shipping</span>
+                        </div>
+                        <div class="feature-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                            <span>Authenticity Guaranteed</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEARN MORE / DESCRIPTION SECTION -->
+    <section class="product-description-full">
+        <div class="container">
+            <div class="section-header-center">
+                <h2 class="learn-more-title">LEARN MORE</h2>
+                <div class="tab-indicator"></div>
+            </div>
+            
+            <div class="description-content">
+                <h3 class="desc-heading">DESCRIPTION</h3>
+                
+                <div class="desc-block">
+                    <p class="desc-intro"><strong>Heritage Classic (Phantom Edition): Stealth Meets Sophistication. 🖤</strong></p>
+                    <p>Unveil the allure of darkness with the Heritage Classic (Phantom Edition). This timepiece combines a sleek black leather strap with a polished stainless steel case, framing a mesmerizing skeleton dial that reveals the intricate automatic movement within. Designed for those who embrace understated luxury and mechanical artistry.</p>
+                </div>
+
+                <div class="features-block">
+                    <h4 class="features-title">✅ Key Features:</h4>
+                    <ul class="features-list">
+                        <li>🖤 <strong>Black Leather Strap</strong> – Crafted from premium soft black leather for ultimate comfort, durability, and timeless elegance.</li>
+                        <li>⚙️ <strong>Automatic Mechanical Movement</strong> – Powered by a self-winding mechanical movement. No batteries needed – the motion of your wrist keeps this masterpiece in motion.</li>
+                        <li>🔍 <strong>Stunning Skeleton Dial</strong> – Witness the heartbeat of precision through the openworked dial. Every gear and spring is showcased, highlighting masterful mechanical artistry.</li>
+                        <li>⭐ <strong>Polished Stainless Steel Case</strong> – The classic steel case contrasts elegantly with the black strap, adding a touch of modern refinement.</li>
+                        <li>💎 <strong>Sapphire Crystal Glass</strong> – Scratch-resistant sapphire crystal protects the dial, ensuring clarity and durability.</li>
+                        <li>💧 <strong>Water-Resistant</strong> – Designed to withstand daily wear, including rain and splashes.</li>
+                    </ul>
+                </div>
+
+                <div class="box-contents">
+                    <h4 class="box-title">📦 What's in the Box?</h4>
+                    <ul class="box-list">
+                        <li>1x Heritage Classic (Phantom Edition) Watch</li>
+                        <li>1x Luxury Watch Box</li>
+                        <li>1x User Manual & Warranty Guide</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION -->
+    <section class="reviews-section" style="padding: 4rem 0; background: #05111a;">
+        <div class="container">
+            <h2 class="section-title shimmer-text" style="text-align: center; margin-bottom: 2rem;">Customer Reviews</h2>
+            
+            <div class="reviews-container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <!-- Reviews List -->
+                <div class="reviews-list" id="reviewsList">
+                    <p style="color: var(--text-muted);">Loading reviews...</p>
+                </div>
+
+                <!-- Add Review Form -->
+                <div class="add-review-form" style="background: rgba(255,255,255,0.05); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.1);">
+                    <h3 style="color: var(--gold); margin-bottom: 1.5rem;">Write a Review</h3>
+                    <form id="reviewForm">
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label style="display: block; color: var(--text-muted); margin-bottom: 0.5rem;">Your Name</label>
+                            <input type="text" id="reviewName" required style="width: 100%; padding: 0.8rem; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white;">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1rem;">
+                            <label style="display: block; color: var(--text-muted); margin-bottom: 0.5rem;">Rating</label>
+                            <div class="star-rating" style="display: flex; gap: 0.5rem; font-size: 1.5rem; cursor: pointer;">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <input type="hidden" id="reviewRating" value="5">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 1.5rem;">
+                            <label style="display: block; color: var(--text-muted); margin-bottom: 0.5rem;">Your Review</label>
+                            <textarea id="reviewComment" rows="4" required style="width: 100%; padding: 0.8rem; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1); border-radius: 6px; color: white;"></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; padding: 1rem; background: var(--gold); color: var(--primary); border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">Submit Review</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RELATED PRODUCTS -->
+    <section class="related-products" style="padding-bottom: 80px;">
+        <div class="container">
+            <h2 class="section-title shimmer-text">You May Also Like</h2>
+            <div class="products-grid" id="relatedProductsGrid">
+                <!-- Related products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SOCIAL CONNECT SECTION -->
+    <section class="social-connect-section" style="padding: 4rem 0; background: linear-gradient(to bottom, #0a1b2a, #050e17); border-top: 1px solid rgba(212, 175, 55, 0.15);">
+      <div class="container">
+        <div class="social-wrapper" style="display: flex; flex-direction: column; align-items: center; gap: 2.5rem;">
+          
+          <div class="social-header" style="text-align: center;">
+            <h2 class="section-title shimmer-text" style="font-size: 2.2rem; margin-bottom: 0.5rem; display: inline-block;">Connect With Us</h2>
+            <p style="color: rgba(255,255,255,0.6); font-size: 1rem; letter-spacing: 0.5px;">Join our community of watch enthusiasts</p>
+          </div>
+          
+          <div class="social-links-container" style="display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;">
+            
+            <!-- Facebook -->
+            <a href="#" class="social-card facebook-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <path fill="#1877F2" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"/>
+                  <path fill="#fff" d="M26.572 29.036h4.917l0.772-4.995h-5.69v-2.73c0-1.373.627-2.707 2.745-2.707h2.125v-4.253c-0.368-0.05-1.631-0.158-3.102-0.158-3.068 0-5.171 1.873-5.171 5.317v4.531h-3.454v4.995h3.454v12.098c1.155.181 2.341.277 3.551.277.816 0 1.619-.044 2.403-.128l-0.55-12.197Z"/>
+                </svg>
+              </div>
+              <span class="social-name">Facebook</span>
+            </a>
+            
+            <!-- Instagram -->
+            <a href="#" class="social-card instagram-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <radialGradient id="yOrnnhliCrdS2gy~4tD8ma" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#fd5" />
+                    <stop offset=".328" stop-color="#ff543e" />
+                    <stop offset=".348" stop-color="#ff523f" />
+                    <stop offset=".504" stop-color="#ff2947" />
+                    <stop offset=".643" stop-color="#ff0a4e" />
+                    <stop offset=".761" stop-color="#fe0050" />
+                    <stop offset=".841" stop-color="#f00" />
+                  </radialGradient>
+                  <path fill="url(#yOrnnhliCrdS2gy~4tD8ma)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+                  <radialGradient id="yOrnnhliCrdS2gy~4tD8mb" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse">
+                    <stop offset="0" stop-color="#4168c9" />
+                    <stop offset=".999" stop-color="#4168c9" stop-opacity="0" />
+                  </radialGradient>
+                  <path fill="url(#yOrnnhliCrdS2gy~4tD8mb)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z" />
+                  <path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z" />
+                  <circle cx="31.5" cy="16.5" r="1.5" fill="#fff" />
+                  <path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z" />
+                </svg>
+              </div>
+              <span class="social-name">Instagram</span>
+            </a>
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/8801604098325" class="social-card whatsapp-card">
+              <div class="social-icon-wrapper">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48px" height="48px">
+                  <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+                  <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+                  <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,4.29C13.158,4.29,4.32,13.135,4.315,23.986c-0.001,3.612,0.972,6.996,2.643,9.902L4.156,43.844l10.19-2.67c2.81,1.55,5.99,2.373,9.244,2.373c10.856,0,19.694-8.845,19.699-19.696C43.301,13.298,34.87,4.29,24.014,4.29L24.014,4.29z" />
+                  <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.163-4.627c-8.707,0-15.794,7.087-15.798,15.796c-0.001,2.785,0.727,5.503,2.111,7.901l-2.243,8.192l8.379-2.197c2.316,1.264,4.925,1.93,7.548,1.931h0.003c8.705,0,15.792-7.087,15.797-15.796C39.812,19.821,38.157,15.814,35.176,12.832z" />
+                  <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd" />
+                </svg>
+              </div>
+              <div class="social-info">
+                <span class="social-name">WhatsApp</span>
+                <span class="social-detail">+880 1604-098325</span>
+              </div>
+            </a>
+            
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMPLIFIED FOOTER -->
+    <footer class="footer" style="padding: 2rem 0; background: #050e17;">
+      <div class="container">
+        <div class="footer-content" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+          
+          <div class="footer-brand">
+            <h3 style="margin: 0; font-size: 1.5rem; color: var(--gold);">Chronos Timepieces</h3>
+            <p style="margin: 0.5rem 0 0; font-size: 0.9rem; opacity: 0.7;">Where Time Meets Elegance</p>
+          </div>
+
+          <div class="footer-copyright" style="text-align: right;">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.6;">
+              &copy; 2025 Chronos Timepieces. All rights reserved.
+            </p>
+            <div style="margin-top: 0.5rem;">
+              <a href="privacy.html" style="color: rgba(255,255,255,0.5); font-size: 0.85rem; margin-right: 1rem; text-decoration: none;">Privacy Policy</a>
+              <a href="terms.html" style="color: rgba(255,255,255,0.5); font-size: 0.85rem; text-decoration: none;">Terms of Service</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script type="module">
+        import { supabase } from './supabase-config.js';
+
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        console.log('productId from URL:', productId);
+
+        if (!productId) {
+            document.querySelector('.container').innerHTML = `
+                <div style="text-align: center; padding: 4rem;">
+                    <h2>Product Not Found</h2>
+                    <p>No product ID specified in the URL (productId=${productId}).</p>
+                    <a href="index.html" class="btn btn-primary">Go to Home</a>
+                </div>
+            `;
+        } else {
+            loadProductDetails();
+            loadReviews(productId);
+        }
+
+        async function loadProductDetails() {
+            try {
+                // Parse productId to integer for the query
+                const id = parseInt(productId, 10);
+                if (isNaN(id)) {
+                    console.error('Invalid product ID:', productId);
+                    document.querySelector('.container').innerHTML = `
+                        <div style="text-align: center; padding: 4rem;">
+                            <h2>Product Not Found</h2>
+                            <p>Invalid product identifier.</p>
+                            <a href="index.html" class="btn btn-primary">Go Home</a>
+                        </div>
+                    `;
+                    return;
+                }
+                const { data: product, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('id', id)
+                    .single();
+                
+                console.log('Query result - product:', product);
+                console.log('Query result - error:', error);
+                
+                if (error) {
+                    console.error('Supabase query error:', error);
+                    document.querySelector('.container').innerHTML = `
+                        <div style="text-align: center; padding: 4rem;">
+                            <h2>Error loading product</h2>
+                            <p>${error.message}</p>
+                            <a href="index.html" class="btn btn-primary">Go Home</a>
+                        </div>
+                    `;
+                    return;
+                }
+                if (!product) {
+                    console.warn('No product found with ID:', id);
+                    document.querySelector('.container').innerHTML = `
+                        <div style="text-align: center; padding: 4rem;">
+                            <h2>Product Not Found</h2>
+                            <p>No product found with ID ${productId}.</p>
+                            <a href="index.html" class="btn btn-primary">Go Home</a>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Show the product details section now that we have the product data
+                console.log('About to show product section...');
+                try {
+                    const section = document.getElementById('productDetailsSection');
+                    console.log('Section element:', section);
+                    if (section) {
+                        section.style.display = 'block';
+                        console.log('Section display set to block');
+                    } else {
+                        console.error('Section element not found!');
+                    }
+                    
+                    // Initialize Wishlist Button
+                    const wishlistBtn = document.getElementById('detailsWishlistBtn');
+                    if (wishlistBtn) {
+                        wishlistBtn.onclick = () => window.toggleWishlist(product.id, wishlistBtn);
+                        
+                        // Check initial state
+                        const { data: { session } } = await supabase.auth.getSession();
+                        if (session) {
+                            const { data: wishlistItems } = await supabase
+                                .from('wishlist')
+                                .select('product_id')
+                                .eq('user_id', session.user.id)
+                                .eq('product_id', product.id);
+                            
+                            if (wishlistItems && wishlistItems.length > 0) {
+                                wishlistBtn.classList.add('active');
+                            }
+                        }
+                    }
+                } catch (e) {
+                    console.error('Error showing product section:', e);
+                }
+
+                // Update page title
+                try {
+                    document.title = `${product.name} - Chronos Timepieces`;
+                } catch (e) {
+                    console.error('Error updating title:', e);
+                }
+
+                // Update breadcrumbs
+                try {
+                    const categoryName = getCategoryName(product.category);
+                    const breadcrumbs = document.querySelector('.breadcrumbs');
+                    if (breadcrumbs) {
+                        breadcrumbs.innerHTML = `
+                            <li><a href="index.html">HOME</a></li>
+                            <li><span class="separator">/</span></li>
+                            <li><a href="index.html#all-products">STORE</a></li>
+                            <li><span class="separator">/</span></li>
+                            <li><a href="${getCategoryPage(product.category)}">${categoryName.toUpperCase()}</a></li>
+                            <li><span class="separator">/</span></li>
+                            <li><span class="current">${product.name.toUpperCase()}</span></li>
+                        `;
+                    }
+                } catch (e) {
+                    console.error('Error updating breadcrumbs:', e);
+                }
+
+                // Update product title
+                try {
+                    const titleElement = document.querySelector('.main-product-title');
+                    if (titleElement) {
+                        titleElement.textContent = product.name.toUpperCase();
+                    }
+                } catch (e) {
+                    console.error('Error updating product title:', e);
+                }
+
+                // Update main image
+                try {
+                    const mainImageContainer = document.querySelector('.main-image-container');
+                    if (mainImageContainer) {
+                        const badgeHTML = product.badge ? `<div class="exclusive-tag">${product.badge}</div>` : '';
+                        const productName = String(product.name || '').replace(/"/g, '&quot;');
+                        mainImageContainer.innerHTML = `
+                            ${badgeHTML}
+                            <img src="${product.image}" alt="${productName}" class="main-image" id="mainImage" onerror="this.src='assets/images/watch-1.png'">
+                        `;
+                    }
+                } catch (e) {
+                    console.error('Error updating main image:', e);
+                }
+
+                // Update thumbnail list with all available images
+                try {
+                    const images = [product.image];
+                    if (product.image2) images.push(product.image2);
+                    if (product.image3) images.push(product.image3);
+                    if (product.image4) images.push(product.image4);
+                    
+                    const thumbnailList = document.querySelector('.thumbnail-list');
+                    if (thumbnailList) {
+                        thumbnailList.innerHTML = images.map((img, index) => `
+                            <div class="thumbnail ${index === 0 ? 'active' : ''}" onclick="changeImage('${img}', this)">
+                                <img src="${img}" alt="View ${index + 1}" onerror="this.src='assets/images/watch-1.png'">
+                            </div>
+                        `).join('');
+                    }
+                } catch (e) {
+                    console.error('Error updating thumbnails:', e);
+                }
+
+                // Update product info
+                document.querySelector('.info-title').textContent = product.short_description || product.name;
+                
+                // Hide the info-description paragraph since we're showing short_description as title
+                const infoDesc = document.querySelector('.info-description p');
+                infoDesc.style.display = 'none';
+
+                // Update price
+                // Update price
+                const priceBlock = document.querySelector('.price-block');
+                const isOnSale = product.is_on_sale && product.sale_price && product.sale_price < product.price;
+                
+                if (isOnSale) {
+                    const discountPercent = Math.round(((product.price - product.sale_price) / product.price) * 100);
+                    priceBlock.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                            <span class="current-price" style="color: #e74c3c;">৳${product.sale_price.toLocaleString()}</span>
+                            <span class="original-price" style="text-decoration: line-through; color: #888; font-size: 1.2rem;">৳${product.price.toLocaleString()}</span>
+                            <span class="discount-badge" style="background: #e74c3c; color: white; padding: 2px 8px; border-radius: 4px; font-size: 0.9rem; font-weight: bold;">-${discountPercent}% OFF</span>
+                        </div>
+                    `;
+                } else {
+                    priceBlock.innerHTML = `
+                        <span class="current-price">৳${product.price.toLocaleString()}</span>
+                    `;
+                }
+
+                // Update meta details
+                document.querySelector('.meta-details').innerHTML = `
+                    <div class="meta-row">
+                        <span class="meta-label">BRAND:</span>
+                        <span class="meta-value">CHRONOS</span>
+                    </div>
+                    <div class="meta-row">
+                        <span class="meta-label">SKU:</span>
+                        <span class="meta-value">${product.sku || product.id}</span>
+                    </div>
+                    <div class="meta-row" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
+                        <span class="meta-label">SHIPPING:</span>
+                        <div class="shipping-options" style="width: 100%;">
+                            <label class="shipping-option" style="display: flex; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 4px; margin-bottom: 0.5rem; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;">
+                                <input type="radio" name="shipping" value="inside" checked style="margin-right: 0.75rem;">
+                                <div style="flex: 1;">
+                                    <div style="color: white; font-weight: 600;">📦 Inside Dhaka</div>
+                                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">Delivery Time: 1-2 Days</div>
+                                </div>
+                                <div style="color: var(--gold); font-weight: 700; font-size: 1.1rem;">৳60</div>
+                            </label>
+                            <label class="shipping-option" style="display: flex; align-items: center; padding: 0.75rem; background: rgba(255,255,255,0.05); border-radius: 4px; cursor: pointer; border: 2px solid transparent; transition: all 0.3s;">
+                                <input type="radio" name="shipping" value="outside" style="margin-right: 0.75rem;">
+                                <div style="flex: 1;">
+                                    <div style="color: white; font-weight: 600;">🚚 Outside Dhaka</div>
+                                    <div style="font-size: 0.85rem; color: rgba(255,255,255,0.6);">Delivery Time: 3-5 Days</div>
+                                </div>
+                                <div style="color: var(--gold); font-weight: 700; font-size: 1.1rem;">৳120</div>
+                            </label>
+                        </div>
+                    </div>
+                `;
+                
+                // Show the product details section now that data is loaded
+                document.getElementById('productDetailsSection').style.display = 'block';
+
+                // Add shipping option selection styling
+                document.querySelectorAll('.shipping-option').forEach(option => {
+                    option.addEventListener('click', function() {
+                        document.querySelectorAll('.shipping-option').forEach(opt => {
+                            opt.style.border = '2px solid transparent';
+                            opt.style.background = 'rgba(255,255,255,0.05)';
+                        });
+                        this.style.border = '2px solid var(--gold)';
+                        this.style.background = 'rgba(212,175,55,0.1)';
+                    });
+                });
+
+                // Set initial selected state
+                document.querySelector('.shipping-option').style.border = '2px solid var(--gold)';
+                document.querySelector('.shipping-option').style.background = 'rgba(212,175,55,0.1)';
+
+                // Update "Add to Cart" button
+                const addToCartBtn = document.querySelector('.btn-add-cart');
+                if (addToCartBtn) {
+                    addToCartBtn.onclick = () => {
+                        const qty = parseInt(document.getElementById('quantity').value);
+                        window.addToCart(product.id, qty);
+                    };
+                }
+
+                // Update description section
+                document.querySelector('.description-content').innerHTML = `
+                    <h3 class="desc-heading">DESCRIPTION</h3>
+                    <div class="desc-block">
+                        <p class="desc-intro"><strong>${product.short_description || product.name}</strong></p>
+                        <p>${product.description || 'No detailed description available.'}</p>
+                    </div>
+                `;
+
+                // Load related products from same category
+                loadRelatedProducts(product.category, product.id);
+
+            } catch (err) {
+                console.error('Error loading product:', err);
+                const errorMessage = err && err.message ? err.message : 'Unknown error occurred';
+                const container = document.querySelector('.product-details-section');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="container">
+                            <div style="text-align: center; padding: 4rem;">
+                                <h2>Product Not Found</h2>
+                                <p>The product you're looking for doesn't exist or has been removed.</p>
+                                <p style="color: #999; font-size: 0.9rem; margin-top: 1rem;">Error: ${errorMessage}</p>
+                                <a href="index.html" class="btn btn-primary" style="margin-top: 1rem;">Go to Home</a>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        async function loadRelatedProducts(category, currentProductId) {
+            try {
+                const { data: products, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('category', category)
+                    .neq('id', currentProductId)
+                    .limit(3);
+
+                if (error) throw error;
+
+                const grid = document.getElementById('relatedProductsGrid');
+                
+                if (!products || products.length === 0) {
+                    grid.innerHTML = '<p style="text-align: center; color: rgba(255,255,255,0.6);">No related products available.</p>';
+                    return;
+                }
+
+                grid.innerHTML = products.map(product => `
+                    <div class="product-card">
+                        <div class="product-image-wrapper">
+                            ${product.badge ? `<span class="product-badge">${product.badge}</span>` : ''}
+                            <a href="product-details.html?id=${product.id}">
+                                <img src="${product.image}" alt="${product.name}" class="product-image" onerror="this.src='assets/images/watch-1.png'">
+                            </a>
+                            <div class="card-actions" style="justify-content: center; width: 100%;">
+                                <a href="product-details.html?id=${product.id}" class="card-action-btn view-details-btn">
+                                    VIEW DETAILS
+                                </a>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-name"><a href="product-details.html?id=${product.id}">${product.name}</a></h3>
+                            <div class="product-price">৳${product.price.toLocaleString()}</div>
+                        </div>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error('Error loading related products:', err);
+            }
+        }
+
+        // Load Reviews
+        async function loadReviews(productId) {
+            const list = document.getElementById('reviewsList');
+            try {
+                const { data: reviews, error } = await supabase
+                    .from('testimonials')
+                    .select('*')
+                    .eq('product_id', productId)
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!reviews || reviews.length === 0) {
+                    list.innerHTML = '<p style="color: rgba(255,255,255,0.5);">No reviews yet. Be the first to review!</p>';
+                    return;
+                }
+
+                list.innerHTML = reviews.map(r => `
+                    <div class="review-item" style="margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <strong style="color: white;">${r.customer_name}</strong>
+                            <span style="color: var(--gold);">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                        </div>
+                        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">${r.comment}</p>
+                        <small style="color: rgba(255,255,255,0.3); font-size: 0.8rem;">${new Date(r.created_at).toLocaleDateString()}</small>
+                    </div>
+                `).join('');
+
+            } catch (err) {
+                console.error('Error loading reviews:', err);
+                list.innerHTML = '<p style="color: var(--danger);">Failed to load reviews.</p>';
+            }
+        }
+
+        // Handle Review Submission
+        document.getElementById('reviewForm')?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('reviewName').value;
+            const rating = parseInt(document.getElementById('reviewRating').value);
+            const comment = document.getElementById('reviewComment').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = parseInt(urlParams.get('id'));
+
+            if (!productId) return;
+
+            try {
+                const { error } = await supabase
+                    .from('testimonials')
+                    .insert([{
+                        product_id: productId,
+                        customer_name: name,
+                        rating: rating,
+                        comment: comment,
+                        is_featured: false
+                    }]);
+
+                if (error) throw error;
+
+                alert('Review submitted successfully!');
+                e.target.reset();
+                loadReviews(productId); // Reload reviews
+
+            } catch (err) {
+                console.error('Error submitting review:', err);
+                alert('Failed to submit review. Please try again.');
+            }
+        });
+
+        // Star Rating Interaction
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                const value = this.dataset.value;
+                document.getElementById('reviewRating').value = value;
+                
+                document.querySelectorAll('.star').forEach(s => {
+                    s.style.color = s.dataset.value <= value ? 'var(--gold)' : 'rgba(255,255,255,0.3)';
+                });
+            });
+        });
+
+        function getCategoryName(category) {
+            const names = {
+                'masterpiece': 'Masterpiece',
+                'everyday': 'Everyday Elegance',
+                'elite': 'Elite Luxury',
+                'exclusive': 'Exclusive Collections',
+                'accessories': 'Premium Accessories'
+            };
+            return names[category] || 'Products';
+        }
+
+        function getCategoryPage(category) {
+            const pages = {
+                'everyday': 'everyday-elegance.html',
+                'elite': 'elite-luxury.html',
+                'exclusive': 'exclusive-collections.html',
+                'accessories': 'premium-accessories.html'
+            };
+            return pages[category] || 'index.html';
+        }
+
+        // Make functions global
+        window.changeImage = function(src, element) {
+            document.getElementById('mainImage').src = src;
+            document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
+            if (element) element.classList.add('active');
+        };
+
+        window.increaseQty = function() {
+            const input = document.getElementById('quantity');
+            const max = parseInt(input.max) || 10;
+            const current = parseInt(input.value);
+            if (current < max) {
+                input.value = current + 1;
+            }
+        };
+
+        window.decreaseQty = function() {
+            const input = document.getElementById('quantity');
+            const min = parseInt(input.min) || 1;
+            const current = parseInt(input.value);
+            if (current > min) {
+                input.value = current - 1;
+            }
+        };
+
+        // Aliases for different naming conventions
+        window.incrementQty = window.increaseQty;
+        window.decrementQty = window.decreaseQty;
+
+        // Add to cart from product details page
+        window.addToCartFromDetails = async function() {
+            // alert('Debug: Add to Cart clicked'); // Uncomment for debugging
+
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const quantityInput = document.getElementById('quantity');
+            const quantity = quantityInput ? (parseInt(quantityInput.value) || 1) : 1;
+            
+
+            
+            // Get selected shipping option
+            const shippingOption = document.querySelector('input[name="shipping"]:checked');
+            const shippingType = shippingOption ? shippingOption.value : 'inside';
+            const shippingCost = shippingType === 'inside' ? 60 : 120;
+            
+
+            
+            if (!productId) {
+                alert('Product ID not found');
+                return;
+            }
+
+            try {
+                // Get product from Supabase
+                const { data: product, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('id', parseInt(productId, 10))
+                    .single();
+
+                if (error || !product) {
+                    console.error('Error fetching product:', error);
+                    alert('Unable to add to cart. Product not found.');
+                    return;
+                }
+
+                // Save shipping selection
+                localStorage.setItem('shippingType', shippingType);
+                localStorage.setItem('shippingCost', shippingCost);
+
+                // Add to cart
+                let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                console.log('Current cart:', cart);
+                
+                const existingItem = cart.find(item => parseInt(item.id) === parseInt(productId));
+                console.log('Existing item:', existingItem);
+                
+                // Ensure price is a number
+                let price = product.price;
+                let salePrice = product.sale_price;
+                let isOnSale = product.is_on_sale && salePrice && salePrice < price;
+                
+                if (typeof price === 'string') {
+                    price = parseFloat(price.replace(/[^0-9.]/g, ''));
+                }
+                if (typeof salePrice === 'string') {
+                    salePrice = parseFloat(salePrice.replace(/[^0-9.]/g, ''));
+                }
+                
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                    existingItem.price = price;
+                    existingItem.sale_price = salePrice;
+                    existingItem.is_on_sale = isOnSale;
+                    console.log('Updated quantity:', existingItem.quantity);
+                } else {
+                    cart.push({ 
+                        ...product, 
+                        price: price, 
+                        sale_price: salePrice,
+                        is_on_sale: isOnSale,
+                        quantity: quantity 
+                    });
+                    console.log('Added new item to cart');
+                }
+                
+                console.log('Cart after update:', cart);
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Update cart count
+                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+                console.log('Total cart count:', count);
+                document.querySelectorAll('.cart-count').forEach(el => {
+                    el.textContent = count;
+                    console.log('Updated cart count element');
+                });
+                
+                // Show success message
+                if (window.showToast) {
+                    window.showToast('Added to cart', 'success');
+                } else {
+                    alert('Added to cart!');
+                }
+            } catch (err) {
+                console.error('Error adding to cart:', err);
+                alert('Unable to add to cart. Please try again.');
+            }
+        };
+
+        // Buy now - add to cart and go to cart page
+        window.buyNow = async function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            
+            // Get selected shipping option
+            const shippingOption = document.querySelector('input[name="shipping"]:checked');
+            const shippingType = shippingOption ? shippingOption.value : 'inside';
+            const shippingCost = shippingType === 'inside' ? 60 : 120;
+            
+            if (!productId) {
+                alert('Product ID not found');
+                return;
+            }
+
+            try {
+                // Get product from Supabase
+                const { data: product, error } = await supabase
+                    .from('products')
+                    .select('*')
+                    .eq('id', parseInt(productId, 10))
+                    .single();
+
+                if (error || !product) {
+                    console.error('Error fetching product:', error);
+                    alert('Unable to proceed. Product not found.');
+                    return;
+                }
+
+                // Save shipping selection
+                localStorage.setItem('shippingType', shippingType);
+                localStorage.setItem('shippingCost', shippingCost);
+
+                // Add to cart
+                let cart = JSON.parse(localStorage.getItem('cart') || '[]');
+                const existingItem = cart.find(item => parseInt(item.id) === parseInt(productId));
+                
+                // Ensure price is a number
+                let price = product.price;
+                let salePrice = product.sale_price;
+                let isOnSale = product.is_on_sale && salePrice && salePrice < price;
+                
+                if (typeof price === 'string') {
+                    price = parseFloat(price.replace(/[^0-9.]/g, ''));
+                }
+                if (typeof salePrice === 'string') {
+                    salePrice = parseFloat(salePrice.replace(/[^0-9.]/g, ''));
+                }
+                
+                if (existingItem) {
+                    existingItem.quantity += quantity;
+                    existingItem.price = price;
+                    existingItem.sale_price = salePrice;
+                    existingItem.is_on_sale = isOnSale;
+                } else {
+                    cart.push({ 
+                        ...product, 
+                        price: price, 
+                        sale_price: salePrice,
+                        is_on_sale: isOnSale,
+                        quantity: quantity 
+                    });
+                }
+                
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Redirect to cart page
+                window.location.href = 'cart.html';
+            } catch (err) {
+                console.error('Error during buy now:', err);
+                alert('Unable to proceed to checkout. Please try again.');
+            }
+        };
+
+        // Attach event listeners
+        const addToCartBtn = document.getElementById('addToCartBtn');
+        if (addToCartBtn) {
+            addToCartBtn.addEventListener('click', window.addToCartFromDetails);
+            console.log('Attached click listener to Add to Cart button');
+        } else {
+            console.error('Add to Cart button not found');
+        }
+
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        if (buyNowBtn) {
+            buyNowBtn.addEventListener('click', window.buyNow);
+            console.log('Attached click listener to Buy Now button');
+        } else {
+            console.error('Buy Now button not found');
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+
+<!-- Mobile Bottom Navigation -->
+    <nav class="mobile-bottom-nav">
+      <div class="mobile-nav-items">
+        <a href="index.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+        <a href="#" class="mobile-nav-item" onclick="event.preventDefault(); openCategoriesModal();">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+          </svg>
+          <span>Categories</span>
+        </a>
+        <a href="wishlist.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+          </svg>
+          <span>Wishlist</span>
+        </a>
+        <a href="cart.html" class="mobile-nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span>Cart</span>
+          <span class="mobile-nav-badge cart-count">0</span>
+        </a>
+        <a href="login.html" class="mobile-nav-item" id="mobileAccountBtn">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+          <span>Account</span>
+        </a>
+      </div>
+    </nav>
+
+        <!-- Categories Modal (Mobile) -->
+    <div class="categories-modal" id="categoriesModal">
+      <div class="modal-overlay" onclick="closeCategoriesModal()"></div>
+      <div class="modal-content-categories">
+        <div class="modal-header">
+          <h3>Categories</h3>
+          <button class="modal-close-btn" onclick="closeCategoriesModal()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="categories-grid-modal">
+          <!-- Everyday Elegance -->
+          <a href="everyday-elegance.html" class="category-card-modal">
+            <img src="assets/images/everyday-elegance.jpg" alt="Everyday Elegance" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Everyday<br>Elegance</h4>
+            </div>
+          </a>
+          
+          <!-- Elite Luxury -->
+          <a href="elite-luxury.html" class="category-card-modal">
+            <img src="assets/images/elite-luxury.png" alt="Elite Luxury" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Elite<br>Luxury</h4>
+            </div>
+          </a>
+          
+          <!-- Exclusive Collections -->
+          <a href="exclusive-collections.html" class="category-card-modal">
+            <img src="assets/images/exclusive-collections.png" alt="Exclusive Collections" class="category-bg-modal">
+            <div class="category-overlay-modal"></div>
+            <div class="category-content-modal">
+              <h4>Exclusive<br>Collections</h4>
+            </div>
+          </a>
+          
+          <!-- Premium Accessories -->
+          <a href="premium-accessories.html" class="category-card-modal">
+            <div class="category-bg-modal accessories-bg">
+              <div class="icon-pattern"></div>
+            </div>
+            <div class="category-content-modal dark-text">
+              <h4>Premium<br>Accessories</h4>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/8801604098325" class="floating-whatsapp" target="_blank" rel="noopener noreferrer">
+      <div class="floating-whatsapp-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="28px" height="28px">
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#fff" d="M4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303z" />
+          <path fill="#cfd8dc" d="M24.014,5c5.079,0.002,9.845,1.979,13.43,5.566c3.584,3.588,5.558,8.356,5.556,13.428c-0.004,10.465-8.522,18.98-18.986,18.98c-3.191,0.002-6.314-0.8-9.113-2.338L4.868,43.303l2.694-9.835C5.9,30.59,5.026,27.324,5.027,23.979C5.032,13.514,13.548,5,24.014,5 M24.014,4.29C13.158,4.29,4.32,13.135,4.315,23.986c-0.001,3.612,0.972,6.996,2.643,9.902L4.156,43.844l10.19-2.67c2.81,1.55,5.99,2.373,9.244,2.373c10.856,0,19.694-8.845,19.699-19.696C43.301,13.298,34.87,4.29,24.014,4.29L24.014,4.29z" />
+          <path fill="#40c351" d="M35.176,12.832c-2.98-2.982-6.941-4.625-11.163-4.627c-8.707,0-15.794,7.087-15.798,15.796c-0.001,2.785,0.727,5.503,2.111,7.901l-2.243,8.192l8.379-2.197c2.316,1.264,4.925,1.93,7.548,1.931h0.003c8.705,0,15.792-7.087,15.797-15.796C39.812,19.821,38.157,15.814,35.176,12.832z" />
+          <path fill="#fff" fill-rule="evenodd" d="M19.268,16.045c-0.355-0.79-0.729-0.806-1.068-0.82c-0.277-0.012-0.593-0.011-0.909-0.011c-0.316,0-0.83,0.119-1.265,0.594c-0.435,0.475-1.661,1.622-1.661,3.956c0,2.334,1.7,4.59,1.937,4.906c0.237,0.316,3.282,5.259,8.104,7.161c4.007,1.58,4.823,1.266,5.693,1.187c0.87-0.079,2.807-1.147,3.202-2.255c0.395-1.108,0.395-2.057,0.277-2.255c-0.119-0.198-0.435-0.316-0.909-0.554s-2.807-1.385-3.242-1.543c-0.435-0.158-0.751-0.237-1.068,0.238c-0.316,0.474-1.225,1.543-1.502,1.859c-0.277,0.317-0.554,0.357-1.028,0.119c-0.474-0.238-2.002-0.738-3.815-2.354c-1.41-1.257-2.362-2.81-2.639-3.285c-0.277-0.474-0.03-0.731,0.208-0.968c0.213-0.213,0.474-0.554,0.712-0.831c0.237-0.277,0.316-0.475,0.474-0.791c0.158-0.317,0.079-0.594-0.04-0.831C20.612,19.329,19.69,16.983,19.268,16.045z" clip-rule="evenodd" />
+        </svg>
+      </div>
+      <div class="floating-whatsapp-text">
+        <span class="floating-whatsapp-label">Chat with us</span>
+        <span class="floating-whatsapp-number">+880 1604-098325</span>
+      </div>
+    </a>
+
+</body>
+</html>
