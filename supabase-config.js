@@ -1,33 +1,45 @@
 // Supabase Configuration
-// IMPORTANT: Replace these with your actual Supabase credentials
-// Get these from: https://app.supabase.com/project/_/settings/api
+// Uses UMD bundle for maximum compatibility
 
-const SUPABASE_URL = "https://mtndlylequqvhamciuus.supabase.co";
-const SUPABASE_ANON_KEY =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10bmRseWxlcXVxdmhhbWNpdXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NTU4NzcsImV4cCI6MjA3OTUzMTg3N30.x2PTamA4Omsfhb8idODiosg9vI-jdT0N_vW2kQAmcIo";
+const SUPABASE_URL = 'https://mtndlylequqvhamciuus.supabase.co'
+const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im10bmRseWxlcXVxdmhhbWNpdXVzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5NTU4NzcsImV4cCI6MjA3OTUzMTg3N30.x2PTamA4Omsfhb8idODiosg9vI-jdT0N_vW2kQAmcIo'
 
-// Initialize Supabase client using the UMD bundle (more reliable cross-browser)
-let supabase = null;
+// Load Supabase UMD bundle
+function loadSupabaseScript() {
+    return new Promise((resolve, reject) => {
+        // Check if already loaded
+        if (window.supabase) {
+            resolve(window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY));
+            return;
+        }
 
-// Try ESM import first, fallback to global UMD
-async function initSupabase() {
-  try {
-    // Try dynamic ESM import
-    const { createClient } = await import(
-      "https://esm.sh/@supabase/supabase-js@2"
-    );
-    supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  } catch (e) {
-    console.error("ESM import failed, trying fallback:", e);
-    // Fallback to global if UMD script is loaded
-    if (window.supabase) {
-      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    }
-  }
-  return supabase;
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+        script.async = true;
+        
+        script.onload = () => {
+            if (window.supabase) {
+                resolve(window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY));
+            } else {
+                reject(new Error('Supabase failed to load'));
+            }
+        };
+        
+        script.onerror = () => reject(new Error('Failed to load Supabase script'));
+        
+        document.head.appendChild(script);
+    });
 }
 
 // Create a promise that resolves when supabase is ready
-const supabaseReady = initSupabase();
+const supabaseReady = loadSupabaseScript();
+
+// Also export for potential direct use
+let supabase = null;
+supabaseReady.then(client => {
+    supabase = client;
+}).catch(err => {
+    console.error('Supabase initialization error:', err);
+});
 
 export { supabase, supabaseReady, SUPABASE_URL, SUPABASE_ANON_KEY };
