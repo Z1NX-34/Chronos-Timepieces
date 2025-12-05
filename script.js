@@ -2,9 +2,13 @@
 // CHRONOS TIMEPIECES - SUPABASE VERSION
 // ========================================
 
-import { supabase } from './supabase-config.js'
+import { supabaseReady } from './supabase-config.js'
 
-document.addEventListener("DOMContentLoaded", () => {
+// Global supabase reference
+let supabase = null;
+
+document.addEventListener("DOMContentLoaded", async () => {
+  // Initialize non-Supabase features immediately
   initNavbar();
   initBurgerMenu();
   initHeroParallax();
@@ -12,19 +16,32 @@ document.addEventListener("DOMContentLoaded", () => {
   initScrollAnimations();
   initLazyLoading();
   initFilterSystem();
-  initSearchBar();
   initRippleEffect();
   initSmoothScroll();
-  
-  // Supabase Inits
-  // Only fetch all products on the home page (index.html). Category pages load their own data.
-  if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
-    fetchProducts();
-  }
-  checkAuthState();
   updateCartCount();
   renderCart();
-  initAuthForms();
+  
+  // Wait for Supabase to be ready
+  try {
+    supabase = await supabaseReady;
+    
+    if (supabase) {
+      // Supabase Inits - Only after supabase is ready
+      if (window.location.pathname.endsWith('index.html') || window.location.pathname === '/' ) {
+        fetchProducts();
+      }
+      checkAuthState();
+      initAuthForms();
+      initSearchBar();
+    } else {
+      console.warn('Supabase not available - some features may be limited');
+      // Still init search with fallback
+      initSearchBar();
+    }
+  } catch (err) {
+    console.error('Error initializing Supabase:', err);
+    initSearchBar();
+  }
 });
 
 // === STATE ===

@@ -1,7 +1,10 @@
-import { supabase } from './supabase-config.js';
+import { supabaseReady } from './supabase-config.js';
 
 // Category Page JavaScript
 // Handles filtering, sorting, and product display
+
+// Global supabase reference
+let supabase = null;
 
 // Get category from page
 const pageTitle = document.querySelector('.category-title')?.textContent.trim();
@@ -20,29 +23,43 @@ let activeFilters = {
 let currentSort = 'recommended';
 
 // Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    loadProducts();
-    initializeFilters();
-    initializeSorting();
-    
-    // Account Button Handler
-    const accountBtn = document.getElementById('accountBtn');
-    if (accountBtn) {
-        accountBtn.addEventListener('click', async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) {
-                window.location.href = 'admin.html';
-            } else {
-                window.location.href = 'login.html';
-            }
-        });
+document.addEventListener('DOMContentLoaded', async () => {
+    // Wait for Supabase to be ready
+    try {
+        supabase = await supabaseReady;
         
-        // Update label if logged in
-        checkLoginStatus();
+        if (supabase) {
+            loadProducts();
+            initializeFilters();
+            initializeSorting();
+            
+            // Account Button Handler
+            const accountBtn = document.getElementById('accountBtn');
+            if (accountBtn) {
+                accountBtn.addEventListener('click', async () => {
+                    const { data: { session } } = await supabase.auth.getSession();
+                    if (session) {
+                        window.location.href = 'admin.html';
+                    } else {
+                        window.location.href = 'login.html';
+                    }
+                });
+                
+                // Update label if logged in
+                checkLoginStatus();
+            }
+        } else {
+            console.warn('Supabase not available');
+            const grid = document.getElementById('productsGrid');
+            if (grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Unable to load products. Please try refreshing.</div>';
+        }
+    } catch (err) {
+        console.error('Error initializing:', err);
     }
 });
 
 async function checkLoginStatus() {
+    if (!supabase) return;
     const { data: { session } } = await supabase.auth.getSession();
     const label = document.querySelector('#accountBtn .nav-icon-label');
     if (session && label) {
@@ -55,6 +72,11 @@ async function loadProducts() {
     // Show loading state
     const grid = document.getElementById('productsGrid');
     if(grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Loading products...</div>';
+
+    if (!supabase) {
+        if(grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Unable to connect. Please refresh.</div>';
+        return;
+    }
 
     try {
         const { data: products, error } = await supabase

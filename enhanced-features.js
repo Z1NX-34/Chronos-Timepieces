@@ -1,7 +1,7 @@
 // Enhanced Features JavaScript - CLEANED VERSION
 // Only includes actively used functionality
 
-import { supabase } from './supabase-config.js';
+// Note: This file does not require Supabase
 
 // ========== MOBILE FEATURES ==========
 
