@@ -18,46 +18,10 @@ function getSupabaseClient() {
   return null;
 }
 
-// Debug Console for User Feedback
-function logToPage(msg, type = 'info') {
-  console.log(msg);
-  let debug = document.getElementById('debug-console');
-  if (!debug) {
-    debug = document.createElement('div');
-    debug.id = 'debug-console';
-    debug.style.cssText = 'position:fixed;bottom:0;left:0;width:100%;max-height:150px;overflow:auto;background:rgba(0,0,0,0.8);color:#0f0;font-family:monospace;z-index:99999;padding:10px;font-size:12px;pointer-events:none;';
-    document.body.appendChild(debug);
-  }
-  const line = document.createElement('div');
-  line.style.color = type === 'error' ? '#ff5555' : (type === 'warn' ? '#ffff55' : '#00ff00');
-  line.textContent = `> ${msg}`;
-  debug.appendChild(line);
-  debug.scrollTop = debug.scrollHeight;
-}
-
-window.onerror = function(msg, url, line) {
-  logToPage(`Error: ${msg} at ${line}`, 'error');
-  // Ensure content is visible if error occurs
-  document.querySelectorAll('.animate-on-scroll').forEach(el => {
-    el.style.opacity = '1';
-    el.style.transform = 'none';
-  });
-};
-
 const supabaseClient = getSupabaseClient();
-
-// Add animation classes safely - Progressive Enhancement
-document.addEventListener('DOMContentLoaded', () => {
-   logToPage('DOM Content Loaded - Initializing...');
-   const elements = document.querySelectorAll('.animate-on-scroll');
-   elements.forEach(el => el.classList.add('hidden-initial'));
-   logToPage(`Found ${elements.length} animate elements.`);
-});
 
 // Initialize when DOM is ready
 function initApp() {
-  logToPage('initApp called');
-  
   // Initialize all features
   initNavbar();
   initBurgerMenu();
@@ -81,17 +45,15 @@ function initApp() {
     window.location.pathname.endsWith("/");
   
   if (isIndexPage) {
-    logToPage('Index page detected - fetching products...');
     fetchProducts();
   }
 
   // Auth features only if Supabase is available
   if (sb) {
-    logToPage('Supabase client available');
     checkAuthState();
     initAuthForms();
   } else {
-    logToPage('Supabase not available - auth features disabled', 'warn');
+    console.warn('Supabase not available - auth features disabled');
   }
 }
 
@@ -119,7 +81,6 @@ async function fetchProducts() {
   // Helper to use fallback
   const useFallback = (reason) => {
     console.warn(`Using fallback data: ${reason}`);
-    logToPage(`Using fallback data: ${reason}`, 'warn');
     allProducts = FALLBACK_PRODUCTS;
     if (grid) renderProducts(allProducts, grid);
     updateCategoryCounts();
@@ -145,14 +106,12 @@ async function fetchProducts() {
        useFallback('Empty database');
     } else {
        console.log('Products loaded:', products.length);
-       logToPage(`Loaded ${products.length} products from DB`);
        allProducts = products;
        if (grid) renderProducts(allProducts, grid);
        updateCategoryCounts();
     }
   } catch (error) {
     console.error("Error loading products:", error);
-    logToPage(`Fetch error: ${error.message}`, 'error');
     useFallback(error.message);
   }
 }
