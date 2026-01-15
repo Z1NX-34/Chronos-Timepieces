@@ -81,11 +81,17 @@ function reorderSectionsForMobile() {
 
 // ========== INITIALIZE ==========
 
-document.addEventListener('DOMContentLoaded', () => {
+function initEnhancedFeatures() {
   initMobileNav();
   initHeroWatch();
   reorderSectionsForMobile();
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initEnhancedFeatures);
+} else {
+  initEnhancedFeatures();
+}
 
 // Handle window resize
 let resizeTimer;

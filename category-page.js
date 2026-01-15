@@ -1,27 +1,18 @@
 // Category Page JavaScript
 // Handles filtering, sorting, and product display
+// NOTE: getSupabaseClient() is defined in script.js
 
-// Get the global supabase client - with fallback
-function getSupabaseClient() {
-  if (window.supabaseClient) {
-    return window.supabaseClient;
-  }
-  if (window.supabase && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
-    window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY);
-    return window.supabaseClient;
-  }
-  return null;
-}
-
-const supabase = getSupabaseClient();
+// Get supabase client (using function from script.js)
+// Use a function call wrapper to avoid redeclaration issues
+const categorySupabase = typeof getSupabaseClient === 'function' ? getSupabaseClient() : window.supabaseClient;
 
 // Get category from page
 const pageTitle = document.querySelector('.category-title')?.textContent.trim();
 const isSearchPage = pageTitle === 'SEARCH RESULTS';
 const pageCategory = pageTitle?.toLowerCase().replace(/\s+/g, '-') || 'everyday-elegance';
 
-// State
-let allProducts = [];
+// State - using different names to avoid conflict with script.js
+let categoryProducts = [];
 let filteredProducts = [];
 let activeFilters = {
     ribbons: [],
@@ -33,7 +24,7 @@ let currentSort = 'recommended';
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
-    if (supabase) {
+    if (categorySupabase) {
         loadProducts();
         initializeFilters();
         initializeSorting();
@@ -42,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const accountBtn = document.getElementById('accountBtn');
         if (accountBtn) {
             accountBtn.addEventListener('click', async () => {
-                const { data: { session } } = await supabase.auth.getSession();
+                const { data: { session } } = await categorySupabase.auth.getSession();
                 if (session) {
                     window.location.href = 'admin.html';
                 } else {
@@ -61,8 +52,8 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 async function checkLoginStatus() {
-    if (!supabase) return;
-    const { data: { session } } = await supabase.auth.getSession();
+    if (!categorySupabase) return;
+    const { data: { session } } = await categorySupabase.auth.getSession();
     const label = document.querySelector('#accountBtn .nav-icon-label');
     if (session && label) {
         label.textContent = 'Admin';
@@ -75,13 +66,13 @@ async function loadProducts() {
     const grid = document.getElementById('productsGrid');
     if(grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Loading products...</div>';
 
-    if (!supabase) {
+    if (!categorySupabase) {
         if(grid) grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; padding: 4rem; color: var(--gold);">Unable to connect. Please refresh.</div>';
         return;
     }
 
     try {
-        const { data: products, error } = await supabase
+        const { data: products, error } = await categorySupabase
             .from('products')
             .select('*');
 
@@ -94,13 +85,13 @@ async function loadProducts() {
             
             if (query) {
                 document.querySelector('.category-title').textContent = `SEARCH RESULTS: "${query}"`;
-                allProducts = products.filter(p => 
+                categoryProducts = products.filter(p => 
                     p.name.toLowerCase().includes(query) || 
                     (p.brand && p.brand.toLowerCase().includes(query)) ||
                     (p.category && p.category.toLowerCase().includes(query))
                 );
             } else {
-                allProducts = products; // Show all if no query
+                categoryProducts = products; // Show all if no query
             }
         } else {
             // Category Logic
@@ -114,10 +105,10 @@ async function loadProducts() {
             const categoryKey = categoryMap[pageCategory];
             
             // Filter products for this category
-            allProducts = products.filter(p => p.category === categoryKey);
+            categoryProducts = products.filter(p => p.category === categoryKey);
         }
 
-        filteredProducts = [...allProducts];
+        filteredProducts = [...categoryProducts];
         
         // Populate brands filter
         populateBrandsFilter();
@@ -134,7 +125,7 @@ async function loadProducts() {
 
 // Populate brands filter dynamically
 function populateBrandsFilter() {
-    const brands = [...new Set(allProducts.map(p => p.brand).filter(Boolean))];
+    const brands = [...new Set(categoryProducts.map(p => p.brand).filter(Boolean))];
     const brandsContainer = document.getElementById('brands-filter');
     
     if (brands.length === 0) {
@@ -214,7 +205,7 @@ function handlePriceFilter() {
 
 // Apply all filters
 function applyFilters() {
-    filteredProducts = allProducts.filter(product => {
+    filteredProducts = categoryProducts.filter(product => {
         // Ribbon filter
         if (activeFilters.ribbons.length > 0) {
             // Check if product badge matches any of the active ribbon filters
